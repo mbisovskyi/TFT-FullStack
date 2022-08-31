@@ -9,4 +9,4 @@ class Trip(models.Model):
     distance = models.FloatField(max_length = 7)
     income = models.DecimalField(max_digits = 7, decimal_places = 2);
     date_started = models.DateField(auto_now_add = True)
-    date_ended = models.DateField(auto_now_add = True)
+    date_ended = models.DateField(blank = True, null = True)
