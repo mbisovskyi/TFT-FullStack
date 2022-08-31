@@ -8,9 +8,15 @@ from trucker_profiles.serializers import TruckerProfileSerializer
 
 # Create your views here.
 
-@api_view(['GET'])
+@api_view(['GET', 'PUT'])
 @permission_classes([IsAuthenticated])
 def get_trucker_profile(request):
     profile = TruckerProfile.objects.get(user_id=request.user.id)
-    serializer = TruckerProfileSerializer(profile, many=False)
-    return Response(serializer.data)
+    if request.method == 'GET':
+        serializer = TruckerProfileSerializer(profile, many=False)
+        return Response(serializer.data)
+    elif request.method == 'PUT':
+        serializer = TruckerProfileSerializer(profile, data = request.data)
+        serializer.is_valid(raise_exception = True)
+        serializer.save()
+        return Response(serializer.data)
