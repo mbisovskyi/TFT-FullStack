@@ -41,8 +41,6 @@ INSTALLED_APPS = [
     'authentication.apps.AuthenticationConfig',
     'corsheaders',
     'cars.apps.CarsConfig',  # This app is for example use only
-    'truckers.apps.TruckersConfig',
-    'trucker_types.apps.TruckerTypesConfig',
     'trips.apps.TripsConfig',
     'costs.apps.CostsConfig',
 ]

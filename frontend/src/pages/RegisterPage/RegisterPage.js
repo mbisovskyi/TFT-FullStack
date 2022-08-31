@@ -1,20 +1,24 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import AuthContext from "../../context/AuthContext";
 import useCustomForm from "../../hooks/useCustomForm";
 
 const RegisterPage = () => {
   const { registerUser } = useContext(AuthContext);
+
   const defaultValues = {
     username: "",
     email: "",
     password: "",
     firstName: "",
     lastName: "",
+    ownerOperator: false,
   };
   const [formData, handleInputChange, handleSubmit] = useCustomForm(
     defaultValues,
     registerUser
   );
+
+  console.log(formData.ownerOperator);
 
   return (
     <div className="container">
@@ -68,6 +72,15 @@ const RegisterPage = () => {
           NOTE: Make this an uncommon password with characters, numbers, and
           special characters!
         </p>
+        <label>
+          Owner operator:{" "}
+          <input
+            type="checkbox"
+            name="ownerOperator"
+            checked={formData.ownerOperator}
+            onChange={handleInputChange}
+          />
+        </label>
         <button>Register!</button>
       </form>
     </div>

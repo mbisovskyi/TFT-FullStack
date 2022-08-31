@@ -1,9 +1,9 @@
 from django.db import models
-from truckers.models import Trucker
+from authentication.models import User
 # Create your models here.
 
 class Trip(models.Model):
-    trucker = models.ForeignKey(Trucker, on_delete = models.CASCADE)
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
     place_from = models.CharField(max_length = 64)
     place_to = models.CharField(max_length = 64)
     distance = models.FloatField(max_length = 7)
