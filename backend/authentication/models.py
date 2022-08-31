@@ -4,7 +4,6 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     is_owner_operator = models.BooleanField(default=False)
-    pay_rate = models.DecimalField(max_digits = 7, decimal_places = 2, null = True)
     '''
     This is a custom version of the built in User class
     It contains all of the built in fields and functionality of the standard User
