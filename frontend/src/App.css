@@ -38,6 +38,9 @@ button:hover {
   max-width: 600px;
   overflow: auto;
   text-align: center;
+  color: #35a376;
+  font-family: "CorbelBold";
+  font-size: 30px;
 }
 
 .form {

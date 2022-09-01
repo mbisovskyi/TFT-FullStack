@@ -1,0 +1,20 @@
+@font-face {
+  font-family: "CorbelBoldItalic";
+  src: local("CorbelBoldItalic"),
+    url("./fonts/Corbel/Corbel-Bold-Italic.ttf") format("truetype");
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: "CorbelBold";
+  src: local("CorbelBold"),
+    url("./fonts/Corbel/Corbel-Bold.ttf") format("truetype");
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: "CorbelRegular";
+  src: local("CorbelRegular"),
+    url("./fonts/Corbel/CORBEL.TTF") format("truetype");
+  font-weight: 600;
+}

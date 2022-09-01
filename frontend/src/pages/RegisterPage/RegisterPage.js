@@ -18,8 +18,6 @@ const RegisterPage = () => {
     registerUser
   );
 
-  console.log(formData.ownerOperator);
-
   return (
     <div className="container">
       <form className="form" onSubmit={handleSubmit}>
@@ -68,10 +66,6 @@ const RegisterPage = () => {
             onChange={handleInputChange}
           />
         </label>
-        <p style={{ fontSize: "12px" }}>
-          NOTE: Make this an uncommon password with characters, numbers, and
-          special characters!
-        </p>
         <label>
           Owner operator:{" "}
           <input
