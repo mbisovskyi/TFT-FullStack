@@ -52,7 +52,8 @@ button:hover {
 
 .App {
   background: linear-gradient(#001924, #003c57);
-  height: 100vh;
+  min-height: 100vh;
+  padding-bottom: 2rem;
 }
 
 .container {
