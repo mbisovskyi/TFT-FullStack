@@ -6,3 +6,4 @@ class Cost(models.Model):
     trip = models.ForeignKey(Trip, on_delete = models.CASCADE)
     title = models.CharField(max_length = 128)
     amount = models.DecimalField(max_digits = 7, decimal_places = 2)
+    date_added = models.DateField(auto_now_add = True)

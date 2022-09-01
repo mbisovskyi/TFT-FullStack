@@ -19,7 +19,7 @@ def user_trips(request):
         serializer = TripSerializer(trips, many=True)
         return Response(serializer.data)
 
-@api_view(['PUT'])
+@api_view(['PUT', 'GET'])
 @permission_classes([IsAuthenticated])
 def update_trip_by_id(request, pk):
     if request.method == 'PUT':
@@ -27,4 +27,8 @@ def update_trip_by_id(request, pk):
         serializer = TripSerializer(trip, data = request.data)
         serializer.is_valid(raise_exception = True)
         serializer.save()
+        return Response(serializer.data)
+    if request.method == 'GET':
+        trip = Trip.objects.get(pk = pk)
+        serializer = TripSerializer(trip)
         return Response(serializer.data)
