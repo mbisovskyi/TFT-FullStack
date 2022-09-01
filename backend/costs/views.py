@@ -8,7 +8,7 @@ from costs.serializers import CostSerializer
 # Create your views here.
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
-def add_trip_costs(request):
+def add_costs(request):
     if request.method == 'POST':
         serializer = CostSerializer(data = request.data)
         print(serializer.initial_data)
@@ -25,13 +25,24 @@ def get_trip_costs(request, pk):
         serializer = CostSerializer(costs, many = True)
         return Response(serializer.data)
 
+
 @api_view(['PUT'])
 @permission_classes([IsAuthenticated])
-def update_trip_cost(request, cost_id):
+def update_trip_cost_details(request, cost_id):
+    costs = Cost.objects.filter(trip_id = request.data['trip_id'])
+    cost = costs.get(pk = cost_id)
     if request.method == 'PUT':
-        costs = Cost.objects.filter(trip_id = request.data['trip_id'])
-        cost = costs.get(pk = cost_id)
         serializer = CostSerializer(cost, data = request.data)
         serializer.is_valid(raise_exception = True)
         serializer.save()
+        return Response(serializer.data)
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_trip_cost_by_id(request, cost_id, trip_id):
+    costs = Cost.objects.filter(trip_id = trip_id)
+    cost = costs.get(pk = cost_id)
+    if request.method == 'GET':
+        serializer = CostSerializer(cost)
         return Response(serializer.data)
