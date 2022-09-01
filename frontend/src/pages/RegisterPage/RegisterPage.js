@@ -2,6 +2,9 @@ import React, { useContext, useState } from "react";
 import AuthContext from "../../context/AuthContext";
 import useCustomForm from "../../hooks/useCustomForm";
 
+import "./RegisterPage.css";
+import truckLogo from "./assets/truck-logo.png";
+
 const RegisterPage = () => {
   const { registerUser } = useContext(AuthContext);
 
@@ -20,9 +23,10 @@ const RegisterPage = () => {
 
   return (
     <div className="container">
+      <img src={truckLogo} alt="truck-logo" />
       <form className="form" onSubmit={handleSubmit}>
         <label>
-          Username:{" "}
+          Username{" "}
           <input
             type="text"
             name="username"
@@ -31,7 +35,7 @@ const RegisterPage = () => {
           />
         </label>
         <label>
-          First Name:{" "}
+          First Name{" "}
           <input
             type="text"
             name="firstName"
@@ -40,7 +44,7 @@ const RegisterPage = () => {
           />
         </label>
         <label>
-          Last Name:{" "}
+          Last Name{" "}
           <input
             type="text"
             name="lastName"
@@ -49,7 +53,7 @@ const RegisterPage = () => {
           />
         </label>
         <label>
-          Email:{" "}
+          Email{" "}
           <input
             type="text"
             name="email"
@@ -58,7 +62,7 @@ const RegisterPage = () => {
           />
         </label>
         <label>
-          Password:{" "}
+          Password{" "}
           <input
             type="text"
             name="password"
@@ -66,16 +70,15 @@ const RegisterPage = () => {
             onChange={handleInputChange}
           />
         </label>
-        <label>
-          Owner operator:{" "}
-          <input
-            type="checkbox"
-            name="ownerOperator"
-            checked={formData.ownerOperator}
-            onChange={handleInputChange}
-          />
-        </label>
-        <button>Register!</button>
+        Owner operator?{" "}
+        <input
+          className="checkbox"
+          type="checkbox"
+          name="ownerOperator"
+          checked={formData.ownerOperator}
+          onChange={handleInputChange}
+        />
+        <button>Register</button>
       </form>
     </div>
   );

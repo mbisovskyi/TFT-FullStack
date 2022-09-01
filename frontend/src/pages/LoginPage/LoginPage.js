@@ -1,8 +1,9 @@
 import React, { useContext, useEffect } from "react";
 import AuthContext from "../../context/AuthContext";
 import useCustomForm from "../../hooks/useCustomForm";
-import { Link } from "react-router-dom";
+
 import "./LoginPage.css";
+import truckLogo from "./assets/truck-logo.png";
 
 const LoginPage = () => {
   const { loginUser, isServerError } = useContext(AuthContext);
@@ -20,9 +21,10 @@ const LoginPage = () => {
 
   return (
     <div className="container">
+      <img src={truckLogo} alt="truck-logo" />
       <form className="form" onSubmit={handleSubmit}>
         <label>
-          Username:{" "}
+          Username{" "}
           <input
             type="text"
             name="username"
@@ -31,7 +33,7 @@ const LoginPage = () => {
           />
         </label>
         <label>
-          Password:{" "}
+          Password{" "}
           <input
             type="text"
             name="password"
@@ -42,8 +44,7 @@ const LoginPage = () => {
         {isServerError ? (
           <p className="error">Login failed, incorrect credentials!</p>
         ) : null}
-        <Link to="/register">Click to register!</Link>
-        <button>Login!</button>
+        <button>Login</button>
       </form>
     </div>
   );

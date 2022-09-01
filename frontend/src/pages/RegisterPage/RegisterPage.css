@@ -1,0 +1,8 @@
+.checkbox:hover {
+  cursor: pointer;
+}
+
+.checkbox {
+  width: 30px;
+  margin: auto;
+}
