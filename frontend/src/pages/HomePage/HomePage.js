@@ -1,32 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import YearIncome from "../../components/YearIncome/YearIncome";
 import useAuth from "../../hooks/useAuth";
+import axios from "axios";
 
 import "./HomePage.css";
 
 const HomePage = () => {
-  // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
-  // The "token" value is the JWT token that you will send in the header of any request requiring authentication
-  //TODO: Add an AddCars Page to add a car for a logged in user's garage
   const navigate = useNavigate();
   const [user, token] = useAuth();
-  // const [cars, setCars] = useState([]);
+  const [trips, setTrips] = useState([]);
+  const [yearIncomeValue, setYearIncomeValue] = useState();
 
-  // useEffect(() => {
-  //   const fetchCars = async () => {
-  //     try {
-  // let response = await axios.get("http://127.0.0.1:8000/api/cars/", {
-  //   headers: {
-  //     Authorization: "Bearer " + token,
-  //   },
-  // });
-  //       setCars(response.data);
-  //     } catch (error) {
-  //       console.log(error.response.data);
-  //     }
-  //   };
-  //   fetchCars();
-  // }, [token]);
+  useEffect(() => {
+    allUserTrips();
+  }, [token]);
+
+  useEffect(() => {
+    getYearIncome();
+  }, [trips]);
+
+  async function allUserTrips() {
+    let response = await axios.get("http://127.0.0.1:8000/api/trips/", {
+      headers: { Authorization: "Bearer " + token },
+    });
+    setTrips(response.data);
+  }
+
+  async function getYearIncome() {
+    let allTripsIncomes = trips.map((trip) => {
+      return parseFloat(trip.income);
+    });
+    let value = 0;
+    for (let i = 0; i < allTripsIncomes.length; i++) {
+      value += allTripsIncomes[i];
+    }
+    setYearIncomeValue(value);
+  }
+
   return (
     <div className="container">
       <h3>
@@ -38,6 +49,7 @@ const HomePage = () => {
         </span>
         {`thank you for your service for whole country!`.toUpperCase()}
       </h3>
+      <YearIncome yearIncome={yearIncomeValue} />
       {/* {cars &&
         cars.map((car) => (
           <p key={car.id}>

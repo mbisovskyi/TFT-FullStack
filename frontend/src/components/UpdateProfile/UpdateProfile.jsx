@@ -13,7 +13,6 @@ const UpdateProfile = ({ profile }) => {
   const [addressInput, setAddress] = useState();
 
   async function handleSubmit() {
-    debugger;
     if (profile) {
       if (!payRateInput) {
         setPayRateInput(profile.pay_rate);
