@@ -1,0 +1,36 @@
+.update-profile-wrap {
+  padding: 0.1rem;
+  width: 30%;
+  margin: auto;
+}
+
+.content {
+  border: 3px solid #35a376;
+  border-radius: 10px;
+  padding: 4rem 4rem;
+  position: relative;
+}
+
+.content label {
+  position: absolute;
+  color: white;
+  padding: 5px 32px;
+  background-color: #35a376;
+  border-radius: 10px;
+  top: -1.5rem;
+  left: 50%;
+  translate: -50%;
+}
+
+.content p {
+  font-size: 30px;
+}
+
+.content-title {
+  color: #35a376;
+  font-size: 30px;
+}
+
+.update-profile-container button {
+  margin-top: 4rem;
+}

@@ -71,6 +71,10 @@ button:hover {
   width: 18%;
 }
 
+.container h3 > p {
+  font-size: 30px;
+}
+
 .form {
   align-items: center;
   display: flex;

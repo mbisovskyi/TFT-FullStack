@@ -1,0 +1,25 @@
+.profile-content {
+  margin-top: 4%;
+}
+
+.profile-info {
+  margin-top: 1%;
+}
+
+.color-white {
+  font-size: 30px;
+  color: white;
+}
+
+.green-title {
+  color: #35a376;
+}
+
+.first-name {
+  font-family: "CorbelBoldItalic";
+  font-size: 32px;
+}
+
+.update-component {
+  margin-top: 5%;
+}
