@@ -10,3 +10,4 @@ class Trip(models.Model):
     income = models.DecimalField(max_digits = 7, decimal_places = 2);
     date_started = models.DateField(auto_now_add = True)
     date_ended = models.DateField(blank = True, null = True)
+    is_active = models.BooleanField(default = True)
