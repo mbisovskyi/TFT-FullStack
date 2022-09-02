@@ -1,6 +1,6 @@
 import React from "react";
 import { useContext } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 
 import "./NavBar.css";
@@ -52,13 +52,15 @@ const Navbar = () => {
         </g>
       </svg>
       <ul>
-        <li>
+        <li className="navBar-buttons">
           {user ? (
-            <button onClick={logoutUser}>Logout</button>
+            <div>
+              <button onClick={logoutUser}>Logout</button>
+            </div>
           ) : (
             <div>
-              <a onClick={() => navigate("/login")}>Login</a>
-              <a onClick={() => navigate("/register")}>Sign Up</a>
+              <button onClick={() => navigate("/login")}>Login</button>
+              <button onClick={() => navigate("/register")}>Sign Up</button>
             </div>
           )}
         </li>

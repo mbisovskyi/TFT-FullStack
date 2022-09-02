@@ -5,7 +5,7 @@
   align-items: center;
 }
 
-.navBar a {
+.navBar-buttons button {
   background: transparent;
   border: none;
   color: white;
@@ -14,7 +14,8 @@
   margin: 1rem;
 }
 
-.navBar a:hover {
+.navBar-buttons button:hover {
+  box-shadow: none;
   color: #35a376;
   cursor: pointer;
 }

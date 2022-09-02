@@ -1,0 +1,16 @@
+.profile-page-link {
+  font-family: "CorbelBoldItalic";
+  font-size: 32px;
+  color: white;
+  cursor: pointer;
+  padding-bottom: 0.1rem;
+  border-bottom: 2px solid white;
+  margin-right: 0.6rem;
+}
+
+h3 {
+  width: 100%;
+  font-size: 28px;
+  font-family: "CORBEL";
+  color: white;
+}

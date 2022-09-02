@@ -40,7 +40,7 @@ button {
   color: white;
   font-size: 30px;
   font-family: inherit;
-  padding: 14px 32px;
+  padding: 5px 32px;
 }
 
 button:hover {
@@ -58,7 +58,8 @@ button:hover {
 
 .container {
   margin: 0 auto;
-  max-width: 600px;
+  min-width: 40%;
+  padding: 0.4rem;
   overflow: auto;
   text-align: center;
   color: #35a376;
@@ -67,7 +68,7 @@ button:hover {
 }
 
 .container img {
-  width: 60%;
+  width: 18%;
 }
 
 .form {
