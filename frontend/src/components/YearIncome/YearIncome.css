@@ -1,3 +1,32 @@
 .yearincome-wrap {
+  margin-top: 3rem;
   padding: 0.1rem;
+}
+
+.yearincome-container {
+  width: 20%;
+  margin: auto;
+  border: 3px solid #35a376;
+  border-radius: 10px;
+  position: relative;
+  padding: 2rem 0rem;
+}
+
+.yearincome-container label {
+  position: absolute;
+  background-color: #35a376;
+  color: white;
+  padding: 0 5%;
+  border-radius: 10px;
+  top: -1.5rem;
+  left: 50%;
+  translate: -50%;
+}
+
+.yearincome-container p {
+  margin: auto;
+  min-width: 30%;
+  font-size: 30px;
+  font-family: "CorbelBold";
+  color: white;
 }

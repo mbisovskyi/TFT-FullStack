@@ -1,5 +1,4 @@
 // Importing styles
-import { useEffect, useState } from "react";
 import "./YearIncome.css";
 
 //Importing utils
@@ -9,7 +8,7 @@ const YearIncome = ({ yearIncome }) => {
     <div className="yearincome-wrap">
       <div className="yearincome-container">
         <label>Year income</label>
-        <p>{yearIncome}</p>
+        <p>${yearIncome}</p>
       </div>
     </div>
   );

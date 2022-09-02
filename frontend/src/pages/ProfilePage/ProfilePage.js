@@ -48,8 +48,8 @@ const ProfilePage = () => {
       <button onClick={() => navigate("/")}>Home</button>
       <div className="profile-content">
         <h3>
+          <span className="green-title">Profile: </span>
           <span className="first-name">{user.first_name.toUpperCase()}</span>
-          <p>Profile</p>
         </h3>
         <p className="profile-info color-white">
           <span className="green-title">Pay rate/mile: </span>
