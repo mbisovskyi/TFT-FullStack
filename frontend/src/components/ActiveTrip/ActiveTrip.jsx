@@ -95,7 +95,7 @@ const ActiveTrip = (props) => {
           </button>
         </div>
         <div>
-          <button>Costs</button>
+          <button onClick={() => navigate("/costs")}>Costs</button>
         </div>
       </div>
     </div>

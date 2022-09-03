@@ -1,11 +1,15 @@
+//utils
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import YearIncome from "../../components/YearIncome/YearIncome";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 
+// Styles
 import "./HomePage.css";
+
+//Components
 import ActiveTrip from "../../components/ActiveTrip/ActiveTrip";
+import YearIncome from "../../components/YearIncome/YearIncome";
 
 const HomePage = () => {
   const navigate = useNavigate();

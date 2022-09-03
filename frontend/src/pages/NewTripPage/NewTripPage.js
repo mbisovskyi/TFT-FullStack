@@ -17,7 +17,6 @@ const NewTripPage = () => {
   const [distance, setDistance] = useState();
   const [incomeType, setIncomeType] = useState("");
   const [perTripValue, setPerTripValue] = useState();
-  //   const [tripIncomeValue, setTripIncomeValue] = useState();
 
   useEffect(() => {
     const getProfile = async () => {
