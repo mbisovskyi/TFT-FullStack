@@ -4,16 +4,31 @@ import "./NewTripPage.css";
 // Importing utils
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const NewTripPage = () => {
   let navigate = useNavigate();
   const [user, token] = useAuth();
+  const [profile, setProfile] = useState([]);
   const [fromCity, setFromCity] = useState("");
   const [toCity, setToCity] = useState("");
   const [distance, setDistance] = useState();
   const [incomeType, setIncomeType] = useState("");
   const [perTripValue, setPerTripValue] = useState();
+
+  useEffect(() => {
+    const getProfile = async () => {
+      let response = await axios.get("http://127.0.0.1:8000/api/profile/", {
+        headers: { Authorization: "Bearer " + token },
+      });
+      setProfile(response.data);
+    };
+    getProfile();
+  }, []);
+
+  let payRate = profile.pay_rate;
+  console.log(payRate);
 
   return incomeType === "perTrip" ? (
     <div className="new-trip-page-wrap">
@@ -43,8 +58,8 @@ const NewTripPage = () => {
               className="income-type-selector"
               name="options"
             >
-              <option value="perTrip">Per trip</option>
               <option value="perMile">Per mile</option>
+              <option value="perTrip">Per trip</option>
             </select>
             <input
               value={perTripValue}
@@ -52,7 +67,7 @@ const NewTripPage = () => {
             ></input>
           </div>
         </form>
-        <label className="total-trip-tag">Total</label>
+        <label className="total-trip-tag">Average per trip: </label>
       </div>
       <button>Start</button>
     </div>
@@ -84,12 +99,15 @@ const NewTripPage = () => {
               className="income-type-selector"
               name="options"
             >
-              <option value="perTrip">Per trip</option>
               <option value="perMile">Per mile</option>
+              <option value="perTrip">Per trip</option>
             </select>
           </div>
         </form>
-        <label className="total-trip-tag">Total</label>
+        <label className="per-mile-total-tag">
+          Total: ${!distance ? payRate * 0 : payRate * distance}
+        </label>
+        <label className="per-mile-average-tag">Average per trip: </label>
       </div>
       <button>Start</button>
     </div>

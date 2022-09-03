@@ -11,6 +11,7 @@ const HomePage = () => {
   const navigate = useNavigate();
   const [user, token] = useAuth();
   const [allTrips, setAllTrips] = useState([]);
+  const [profile, setProfile] = useState([]);
 
   useEffect(() => {
     const allUserTrips = async () => {

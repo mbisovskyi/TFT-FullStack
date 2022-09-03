@@ -71,3 +71,21 @@ p {
   bottom: -1.4rem;
   translate: -50%;
 }
+
+.per-mile-total-tag {
+  position: absolute;
+  padding: 0.1rem 3%;
+  border-radius: 10px;
+  background-color: #35a376;
+  bottom: -1.4rem;
+  left: 20%;
+}
+
+.per-mile-average-tag {
+  position: absolute;
+  padding: 0.1rem 3%;
+  border-radius: 10px;
+  background-color: #35a376;
+  bottom: -1.4rem;
+  right: 20%;
+}
