@@ -11,11 +11,13 @@ const NewTripPage = () => {
   let navigate = useNavigate();
   const [user, token] = useAuth();
   const [profile, setProfile] = useState([]);
+  const [allTrips, setAllTrips] = useState([]);
   const [fromCity, setFromCity] = useState("");
   const [toCity, setToCity] = useState("");
   const [distance, setDistance] = useState();
   const [incomeType, setIncomeType] = useState("");
   const [perTripValue, setPerTripValue] = useState();
+  //   const [tripIncomeValue, setTripIncomeValue] = useState();
 
   useEffect(() => {
     const getProfile = async () => {
@@ -24,11 +26,53 @@ const NewTripPage = () => {
       });
       setProfile(response.data);
     };
+    const allUserTrips = async () => {
+      let response = await axios.get("http://127.0.0.1:8000/api/trips/", {
+        headers: { Authorization: "Bearer " + token },
+      });
+      setAllTrips(response.data);
+    };
     getProfile();
+    allUserTrips();
   }, []);
 
+  async function handleSubmitPerMile() {
+    let newTrip = {
+      place_from: fromCity,
+      place_to: toCity,
+      distance: distance,
+      income: payRate * distance,
+    };
+    await axios.post("http://127.0.0.1:8000/api/trips/", newTrip, {
+      headers: { Authorization: "Bearer " + token },
+    });
+    navigate("/");
+  }
+
+  async function handleSubmitPerTrip() {
+    let newTrip = {
+      place_from: fromCity,
+      place_to: toCity,
+      distance: distance,
+      income: perTripValue,
+    };
+    await axios.post("http://127.0.0.1:8000/api/trips/", newTrip, {
+      headers: { Authorization: "Bearer " + token },
+    });
+    navigate("/");
+  }
+
   let payRate = profile.pay_rate;
-  console.log(payRate);
+  let complitedTrips = allTrips.filter((trip) => trip.is_active === false);
+  let tripsIncomes = complitedTrips.map((trip) => {
+    return parseFloat(trip.income);
+  });
+
+  let tripAverageIncome = 0;
+  for (let i = 0; i < tripsIncomes.length; i++) {
+    tripAverageIncome += tripsIncomes[i];
+  }
+  tripAverageIncome /= tripsIncomes.length;
 
   return incomeType === "perTrip" ? (
     <div className="new-trip-page-wrap">
@@ -67,16 +111,22 @@ const NewTripPage = () => {
             ></input>
           </div>
         </form>
-        <label className="total-trip-tag">Average per trip: </label>
+        <label className="total-trip-tag">
+          Average: $
+          {!tripAverageIncome
+            ? (tripAverageIncome = 0)
+            : tripAverageIncome.toFixed(2)}
+        </label>
       </div>
-      <button>Start</button>
+      <button onClick={handleSubmitPerTrip}>Start</button>
     </div>
   ) : (
+    //// Turnery
     <div className="new-trip-page-wrap">
       <button onClick={() => navigate("/")}>Home</button>
       <div className="create-trip-container">
         <label className="new-trip-tag">New trip</label>
-        <form>
+        <form onSubmit={handleSubmitPerMile}>
           <div className="input-fields-container">
             <p>From city</p>
             <input
@@ -105,11 +155,16 @@ const NewTripPage = () => {
           </div>
         </form>
         <label className="per-mile-total-tag">
-          Total: ${!distance ? payRate * 0 : payRate * distance}
+          Total: ${!distance ? payRate * 0 : (payRate * distance).toFixed(2)}
         </label>
-        <label className="per-mile-average-tag">Average per trip: </label>
+        <label className="per-mile-average-tag">
+          Average: $
+          {!tripAverageIncome
+            ? (tripAverageIncome = 0)
+            : tripAverageIncome.toFixed(2)}
+        </label>
       </div>
-      <button>Start</button>
+      <button onClick={handleSubmitPerMile}>Start</button>
     </div>
   );
 };

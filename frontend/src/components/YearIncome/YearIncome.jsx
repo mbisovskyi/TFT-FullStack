@@ -21,7 +21,7 @@ const YearIncome = (props) => {
     <div className="yearincome-wrap">
       <div className="yearincome-container">
         <label>Year income</label>
-        <p>${totalYearIncome}</p>
+        <p>${totalYearIncome.toFixed(2)}</p>
       </div>
     </div>
   );
