@@ -22,19 +22,6 @@ const HomePage = () => {
     allUserTrips();
   }, [token]);
 
-  // useEffect(() => {
-  //   getYearIncome();
-  //   getActiveTrip();
-  // }, [trips]);
-
-  // async function getActiveTrip() {
-  //   let activeArray = trips.filter((trip) => {
-  //     return trip.is_active === true;
-  //   });
-  //   setActiveTrip(activeArray);
-  //   console.log(activeTrip);
-  // }
-
   return (
     <div className="container">
       <h3>

@@ -45,3 +45,27 @@
   display: flex;
   justify-content: space-between;
 }
+
+.no-active-trip-wrap {
+  position: relative;
+  width: 35%;
+  margin: 4% auto;
+  padding: 1rem;
+  border-top: 3px solid #35a376;
+  border-radius: 10px;
+}
+
+.no-active-trip-wrap label {
+  position: absolute;
+  background-color: #35a376;
+  color: white;
+  padding: 0.3rem 5%;
+  border-radius: 10px;
+  top: -1.5rem;
+  left: 50%;
+  translate: -50%;
+}
+
+.no-active-trip-wrap button {
+  margin-top: 10%;
+}

@@ -12,6 +12,7 @@ const ActiveTrip = (props) => {
   let activeTrips = allTrips.filter((trip) => {
     return trip.is_active === true;
   });
+  console.log(activeTrips);
 
   let activeTripId = activeTrips.map((trip) => trip.id);
 
@@ -61,7 +62,7 @@ const ActiveTrip = (props) => {
     console.log(response.data);
   }
 
-  return (
+  return activeTrips.length != 0 ? (
     <div className="activetrip-wrap">
       <div className="activetrip-upper-container">
         {activeTrips.map((trip, index) => {
@@ -97,6 +98,13 @@ const ActiveTrip = (props) => {
           <button>Costs</button>
         </div>
       </div>
+    </div>
+  ) : (
+    <div className="no-active-trip-wrap">
+      <div>
+        <label>No active trip</label>
+      </div>
+      <button>New trip</button>
     </div>
   );
 };
