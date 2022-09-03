@@ -29,15 +29,11 @@ const ProfilePage = () => {
           address: " ",
           user_id: user.id,
         };
-        let response = await axios.post(
-          "http://127.0.0.1:8000/api/profile/",
-          addNew,
-          {
-            headers: {
-              Authorization: "Bearer " + token,
-            },
-          }
-        );
+        await axios.post("http://127.0.0.1:8000/api/profile/", addNew, {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        });
       }
     };
     fetchProfile();

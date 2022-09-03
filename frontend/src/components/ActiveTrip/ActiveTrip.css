@@ -1,0 +1,47 @@
+.activetrip-wrap {
+  margin-top: 7%;
+  /* padding: 0.1rem; */
+}
+
+.activetrip-upper-container {
+  position: relative;
+  width: 41%;
+  margin: 2% auto;
+  padding: 3rem 0rem;
+  border: 3px solid #35a376;
+  border-radius: 10px;
+}
+
+.activetrip-upper-container p {
+  font-size: 30px;
+  color: white;
+}
+
+.activetrip-tag {
+  position: absolute;
+  background-color: #35a376;
+  color: white;
+  padding: 0 5%;
+  border-radius: 10px;
+  top: -1.5rem;
+  left: 50%;
+  translate: -50%;
+}
+
+.activetrip-total-tag {
+  position: absolute;
+  background-color: #35a376;
+  color: white;
+  padding: 0.3rem 5%;
+  border-radius: 10px;
+  bottom: -1.5rem;
+  left: 50%;
+  translate: -50%;
+}
+
+.activetrip-lower-container {
+  width: 41%;
+  margin: 5% auto;
+  display: flex;
+  justify-content: space-between;
+}
