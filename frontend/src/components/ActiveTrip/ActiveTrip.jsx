@@ -1,18 +1,18 @@
 //Importing utils
-import React, { useEffect, useState } from "react";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 //Importing styles
 import "./ActiveTrip.css";
 
 const ActiveTrip = (props) => {
+  let navigate = useNavigate();
   const [user, token] = useAuth();
   const allTrips = props.allTrips;
 
   let activeTrips = allTrips.filter((trip) => {
     return trip.is_active === true;
   });
-  console.log(activeTrips);
 
   let activeTripId = activeTrips.map((trip) => trip.id);
 
@@ -104,7 +104,7 @@ const ActiveTrip = (props) => {
       <div>
         <label>No active trip</label>
       </div>
-      <button>New trip</button>
+      <button onClick={() => navigate("/newtrip")}>New trip</button>
     </div>
   );
 };

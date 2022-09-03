@@ -1,0 +1,73 @@
+.new-trip-page-wrap {
+  width: 60%;
+  margin: auto;
+  text-align: center;
+  color: white;
+  font-family: "CorbelBold";
+  font-size: 30px;
+}
+
+.create-trip-container {
+  position: relative;
+  margin: 7%;
+  border: 3px solid #35a376;
+  border-radius: 10px;
+  padding: 1%;
+}
+
+.input-fields-container {
+  width: 60%;
+  margin: auto;
+  padding: 3% 0;
+}
+
+.income-type-selector {
+  width: 80%;
+  background-color: transparent;
+  color: white;
+  font-family: "CorbelBold";
+  font-size: 24px;
+  border-radius: 10px;
+  padding: 0.1rem 0;
+  margin-bottom: 1rem;
+  text-align: center;
+  border: 3px solid white;
+}
+
+.income-type-selector:focus {
+  background-color: #002f43;
+  border-radius: 10px;
+  color: white;
+}
+
+.input-fields-container label,
+p {
+  font-size: 30px;
+  margin: 2%;
+}
+
+.input-fields-container p {
+  color: #35a376;
+}
+
+.input-fields-container input {
+  padding-bottom: 0.4rem;
+}
+
+.new-trip-tag {
+  position: absolute;
+  padding: 0.1rem 3%;
+  border-radius: 10px;
+  background-color: #35a376;
+  top: -1.4rem;
+  translate: -50%;
+}
+
+.total-trip-tag {
+  position: absolute;
+  padding: 0.1rem 3%;
+  border-radius: 10px;
+  background-color: #35a376;
+  bottom: -1.4rem;
+  translate: -50%;
+}
