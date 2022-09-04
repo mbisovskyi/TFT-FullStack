@@ -54,11 +54,11 @@ const CostsPage = () => {
           Total: {costsTotal.toFixed(2)}
         </label>
       </div>
+      <AddTripCost />
     </div>
   ) : (
     <div className="costspage-wrap">
       <button onClick={() => navigate("/")}>Home</button>
-      <label>No Costs</label>
       <AddTripCost />
     </div>
   );

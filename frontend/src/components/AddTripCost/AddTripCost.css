@@ -1,0 +1,26 @@
+.addtripcost-wrap {
+  width: 50%;
+  margin: 6% auto;
+}
+
+.addtripcost-container {
+  position: relative;
+  padding: 5% 10% 5%;
+  border: 3px solid #35a376;
+  border-radius: 10px;
+  margin-bottom: 5%;
+}
+
+.addtripcost-container p {
+  color: #35a376;
+}
+
+.add-costs-tag {
+  position: absolute;
+  background-color: #35a376;
+  border-radius: 10px;
+  font-size: 30px;
+  padding: 0.2rem 5%;
+  top: -1.5rem;
+  translate: -50%;
+}
