@@ -10,15 +10,18 @@ const ActiveTrip = (props) => {
   let navigate = useNavigate();
   const { state } = useLocation();
   const [user, token] = useAuth();
-  const [costAmount, setCostAmount] = useState(0);
   const allTrips = props.allTrips;
+  const activeTripTotalCosts = props.tripTotalCosts;
 
+  //Active trips filter
   let activeTrips = allTrips.filter((trip) => {
     return trip.is_active === true;
   });
 
+  //Getting an Id of active trip
   let activeTripId = activeTrips.map((trip) => trip.id);
 
+  // Fetch current date
   function getCurrentDate() {
     let date = new Date();
 
@@ -30,7 +33,7 @@ const ActiveTrip = (props) => {
       month = "0" + month;
     }
 
-    let day = date.getDay();
+    let day = date.getDate();
     if (day < 10) {
       day = "0" + day;
     }
@@ -40,6 +43,7 @@ const ActiveTrip = (props) => {
   }
 
   async function handleEndTripClick() {
+    debugger;
     let dateEnded = getCurrentDate();
 
     let updateTrip = activeTrips.map((trip) => {
@@ -49,7 +53,7 @@ const ActiveTrip = (props) => {
         distance: trip.distance,
         place_from: trip.place_from,
         place_to: trip.place_to,
-        income: trip.income - costAmount,
+        income: trip.income - activeTripTotalCosts,
         is_active: false,
         user_id: user.id,
       };
@@ -77,7 +81,7 @@ const ActiveTrip = (props) => {
               </p>
               <p>{trip.distance} miles</p>
               <label className="activetrip-total-tag">
-                Income: ${trip.income}
+                Income: ${trip.income - activeTripTotalCosts}
               </label>
             </div>
           );

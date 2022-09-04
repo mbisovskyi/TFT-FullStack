@@ -36,6 +36,7 @@ const HomePage = () => {
     allUserCosts();
   }, [token]);
 
+  // Complited trips filter
   let costsOfComplitedTrips = allUserCosts.filter(
     (cost) => cost.trip.is_active === false
   );
@@ -46,6 +47,19 @@ const HomePage = () => {
   allCostsAmounts.forEach((element) => {
     totalCosts += element;
   });
+
+  //Active trip costs filter
+  let allCostsOfActiveTrip = allUserCosts.filter(
+    (cost) => cost.trip.is_active === true
+  );
+  let activeTripCostsAmounts = allCostsOfActiveTrip.map((cost) =>
+    parseFloat(cost.amount)
+  );
+  let activeTripTotalCosts = 0;
+  for (let i = 0; i < activeTripCostsAmounts.length; i++) {
+    activeTripTotalCosts += activeTripCostsAmounts[i];
+  }
+  console.log(activeTripTotalCosts);
 
   return (
     <div className="container">
@@ -59,7 +73,7 @@ const HomePage = () => {
         {`thank you for your service for whole country!`.toUpperCase()}
       </h3>
       <YearIncome allTrips={allTrips} totalCosts={totalCosts} />
-      <ActiveTrip allTrips={allTrips} totalCosts={state} />
+      <ActiveTrip allTrips={allTrips} tripTotalCosts={activeTripTotalCosts} />
     </div>
   );
 };
