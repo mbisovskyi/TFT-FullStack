@@ -95,7 +95,11 @@ const ActiveTrip = (props) => {
           </button>
         </div>
         <div>
-          <button onClick={() => navigate("/costs")}>Costs</button>
+          <button
+            onClick={() => navigate("/costs", { state: { id: activeTripId } })}
+          >
+            Costs
+          </button>
         </div>
       </div>
     </div>

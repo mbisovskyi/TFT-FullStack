@@ -3,4 +3,42 @@
   width: 60%;
   margin: auto;
   text-align: center;
+  color: white;
+  font-family: "CorbelBold";
+}
+
+.costspage-container {
+  width: 45%;
+  margin: 7% auto;
+  position: relative;
+  border: 3px solid #35a376;
+  border-radius: 10px;
+  padding: 2% 0 3% 0;
+}
+
+.trip-costs-tag {
+  position: absolute;
+  background-color: #35a376;
+  border-radius: 10px;
+  font-size: 30px;
+  padding: 0.2rem 5%;
+  top: -1.5rem;
+  translate: -50%;
+}
+
+.costs-total-tag {
+  position: absolute;
+  background-color: #35a376;
+  border-radius: 10px;
+  font-size: 30px;
+  padding: 0.2rem 5%;
+  bottom: -1.5rem;
+  translate: -50%;
+}
+
+.content-container {
+  width: 80%;
+  margin: auto;
+  padding: 2% 0 1% 0;
+  border-bottom: 1px solid #35a376;
 }
