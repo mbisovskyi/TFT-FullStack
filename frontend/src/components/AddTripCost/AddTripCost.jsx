@@ -14,16 +14,25 @@ const AddTripCost = () => {
   const [user, token] = useAuth();
   const [costTitle, setCostTitle] = useState("");
   const [costAmount, setCostAmount] = useState();
+  const [activeTrip, setActiveTrip] = useState([]);
 
   async function handleSubmit() {
     let newCost = {
       title: costTitle,
       amount: costAmount,
       trip_id: parseFloat(state.id),
+      user_id: user.id,
     };
     await axios.post("http://127.0.0.1:8000/api/costs/", newCost, {
       headers: { Authorization: "Bearer " + token },
     });
+
+    setActiveTrip(
+      await axios.get(`http://127.0.0.1:8000/api/trips/${newCost.trip_id}/`, {
+        headers: { Authorization: "Bearer " + token },
+      })
+    );
+    console.log(activeTrip.data);
     window.location.reload(false);
   }
 

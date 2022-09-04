@@ -35,7 +35,7 @@ const CostsPage = () => {
     costsTotal += allCostsAmounts[i];
   }
 
-  return costs.length != 0 ? (
+  return costs.length !== 0 ? (
     <div className="costspage-wrap">
       <button onClick={() => navigate("/")}>Home</button>
       <div className="costspage-container">

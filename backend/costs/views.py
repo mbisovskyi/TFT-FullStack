@@ -46,3 +46,11 @@ def get_trip_cost_by_id(request, cost_id, trip_id):
     if request.method == 'GET':
         serializer = CostSerializer(cost)
         return Response(serializer.data)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_all_costs_by_user_id(request, user_id):
+    if request.method == 'GET':
+        costs = Cost.objects.filter(user_id = user_id)
+        serializer = CostSerializer(costs, many = True)
+        return Response(serializer.data)

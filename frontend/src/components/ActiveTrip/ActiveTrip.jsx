@@ -1,13 +1,16 @@
 //Importing utils
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 //Importing styles
 import "./ActiveTrip.css";
+import { useState } from "react";
 
 const ActiveTrip = (props) => {
   let navigate = useNavigate();
+  const { state } = useLocation();
   const [user, token] = useAuth();
+  const [costAmount, setCostAmount] = useState(0);
   const allTrips = props.allTrips;
 
   let activeTrips = allTrips.filter((trip) => {
@@ -46,7 +49,7 @@ const ActiveTrip = (props) => {
         distance: trip.distance,
         place_from: trip.place_from,
         place_to: trip.place_to,
-        income: trip.income,
+        income: trip.income - costAmount,
         is_active: false,
         user_id: user.id,
       };
@@ -74,7 +77,7 @@ const ActiveTrip = (props) => {
               </p>
               <p>{trip.distance} miles</p>
               <label className="activetrip-total-tag">
-                Total: {trip.income}
+                Income: ${trip.income}
               </label>
             </div>
           );
@@ -96,7 +99,11 @@ const ActiveTrip = (props) => {
         </div>
         <div>
           <button
-            onClick={() => navigate("/costs", { state: { id: activeTripId } })}
+            onClick={() =>
+              navigate("/costs", {
+                state: { id: activeTripId },
+              })
+            }
           >
             Costs
           </button>
