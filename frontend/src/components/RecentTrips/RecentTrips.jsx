@@ -27,14 +27,17 @@ const RecentTrips = (props) => {
             <div className="recenttrips-item" key={index}>
               <p>
                 <span>Route: </span>
+                {"   "}
                 {trip.place_from} - {trip.place_to}
               </p>
               <p>
                 <span>Distance: </span>
+                {"   "}
                 {trip.distance} miles
               </p>
               <p>
-                <span>Trip income: </span>${trip.income}
+                <span>Trip income: </span>
+                {"   "}${trip.income}
               </p>
             </div>
           );
