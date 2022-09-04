@@ -4,7 +4,6 @@ import useAuth from "../../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 //Importing styles
 import "./ActiveTrip.css";
-import { useState } from "react";
 
 const ActiveTrip = (props) => {
   let navigate = useNavigate();

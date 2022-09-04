@@ -1,0 +1,49 @@
+.recenttrips-wrap {
+  width: 60%;
+  margin: 3% auto;
+}
+
+.recenttrips-container {
+  position: relative;
+  border: 3px solid #35a376;
+  border-radius: 10px;
+  color: white;
+  padding: 3% 10%;
+  padding-bottom: 5%;
+}
+
+.recent-trips-tag {
+  position: absolute;
+  background-color: #35a376;
+  padding: 0.3rem 2%;
+  border-radius: 10px;
+  top: -1.5rem;
+  translate: -50%;
+}
+
+.recenttrips-average-tag {
+  position: absolute;
+  background-color: #35a376;
+  padding: 0.3rem 2%;
+  border-radius: 10px;
+  bottom: -1.5rem;
+  left: 20%;
+}
+
+.recenttrips-total-tag {
+  position: absolute;
+  background-color: #35a376;
+  padding: 0.3rem 2%;
+  border-radius: 10px;
+  bottom: -1.5rem;
+  right: 20%;
+}
+
+.recenttrips-item {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #35a376;
+}
+
+.recenttrips-item span {
+  color: #35a376;
+}

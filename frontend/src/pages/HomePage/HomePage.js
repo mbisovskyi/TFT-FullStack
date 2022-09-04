@@ -10,6 +10,7 @@ import "./HomePage.css";
 //Components
 import ActiveTrip from "../../components/ActiveTrip/ActiveTrip";
 import YearIncome from "../../components/YearIncome/YearIncome";
+import RecentTrips from "../../components/RecentTrips/RecentTrips";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -59,7 +60,6 @@ const HomePage = () => {
   for (let i = 0; i < activeTripCostsAmounts.length; i++) {
     activeTripTotalCosts += activeTripCostsAmounts[i];
   }
-  console.log(activeTripTotalCosts);
 
   return (
     <div className="container">
@@ -74,6 +74,7 @@ const HomePage = () => {
       </h3>
       <YearIncome allTrips={allTrips} totalCosts={totalCosts} />
       <ActiveTrip allTrips={allTrips} tripTotalCosts={activeTripTotalCosts} />
+      <RecentTrips allTrips={allTrips} />
     </div>
   );
 };
