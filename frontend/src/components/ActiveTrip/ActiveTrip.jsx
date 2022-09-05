@@ -1,13 +1,12 @@
 //Importing utils
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 //Importing styles
 import "./ActiveTrip.css";
 
 const ActiveTrip = (props) => {
   let navigate = useNavigate();
-  const { state } = useLocation();
   const [user, token] = useAuth();
   const allTrips = props.allTrips;
   const activeTripTotalCosts = props.tripTotalCosts;
@@ -68,7 +67,7 @@ const ActiveTrip = (props) => {
     console.log(response.data);
   }
 
-  return activeTrips.length != 0 ? (
+  return activeTrips.length !== 0 ? (
     <div className="activetrip-wrap">
       <div className="activetrip-upper-container">
         {activeTrips.map((trip, index) => {
@@ -88,7 +87,13 @@ const ActiveTrip = (props) => {
       </div>
       <div className="activetrip-lower-container">
         <div>
-          <button>Update</button>
+          <button
+            onClick={() =>
+              navigate("/updateTrip", { state: { tripId: activeTripId } })
+            }
+          >
+            Update
+          </button>
         </div>
         <div>
           <button

@@ -1,6 +1,5 @@
 .activetrip-wrap {
   margin-top: 7%;
-  /* padding: 0.1rem; */
 }
 
 .activetrip-upper-container {
@@ -45,7 +44,7 @@
 
 .activetrip-lower-container {
   width: 41%;
-  margin: 5% auto;
+  margin: 4% auto 8%;
   display: flex;
   justify-content: space-between;
 }

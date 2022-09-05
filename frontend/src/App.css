@@ -58,7 +58,7 @@ button:hover {
 }
 
 .container {
-  margin: 0 auto;
+  margin: 0 auto 5%;
   min-width: 40%;
   padding: 0.4rem;
   overflow: auto;

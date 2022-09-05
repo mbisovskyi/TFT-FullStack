@@ -37,7 +37,7 @@ const CostsPage = () => {
 
   return costs.length !== 0 ? (
     <div className="costspage-wrap">
-      <button onClick={() => navigate("/")}>Home</button>
+      <button onClick={() => navigate("/")}>Back</button>
       <div className="costspage-container">
         <label className="trip-costs-tag">Trip costs</label>
         {costs.map((cost, index) => {
@@ -58,7 +58,7 @@ const CostsPage = () => {
     </div>
   ) : (
     <div className="costspage-wrap">
-      <button onClick={() => navigate("/")}>Home</button>
+      <button onClick={() => navigate("/")}>Back</button>
       <AddTripCost />
     </div>
   );

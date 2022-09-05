@@ -1,15 +1,19 @@
-// Importing styles
-import "./NewTripPage.css";
+// Styles
+import "./UpdateTripPage.css";
 
-// Importing utils
-import { useNavigate } from "react-router-dom";
+//Hooks
 import useAuth from "../../hooks/useAuth";
-import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+
+//utils
 import axios from "axios";
 
-const NewTripPage = () => {
-  let navigate = useNavigate();
+const UpdateTripPAge = () => {
+  const navigate = useNavigate();
+  const { state } = useLocation();
   const [user, token] = useAuth();
+  const [activeTrip, setActiveTrip] = useState([]);
   const [profile, setProfile] = useState([]);
   const [allTrips, setAllTrips] = useState([]);
   const [fromCity, setFromCity] = useState("");
@@ -31,20 +35,39 @@ const NewTripPage = () => {
       });
       setAllTrips(response.data);
     };
+    const getActiveTrip = async () => {
+      let response = await axios.get(
+        `http://127.0.0.1:8000/api/trips/${state.tripId}/`,
+        {
+          headers: { Authorization: "Bearer " + token },
+        }
+      );
+      setActiveTrip(response.data);
+    };
     getProfile();
     allUserTrips();
+    getActiveTrip();
   }, []);
 
   async function handleSubmitPerMile() {
+    debugger;
     let newTrip = {
       place_from: fromCity,
       place_to: toCity,
       distance: distance,
-      income: payRate * distance,
+      income: (payRate * distance).toFixed(2),
+      date_started: activeTrip.date_started,
+      date_ended: null,
+      is_active: true,
+      user_id: user.id,
     };
-    await axios.post("http://127.0.0.1:8000/api/trips/", newTrip, {
-      headers: { Authorization: "Bearer " + token },
-    });
+    await axios.put(
+      `http://127.0.0.1:8000/api/trips/${state.tripId}/`,
+      newTrip,
+      {
+        headers: { Authorization: "Bearer " + token },
+      }
+    );
     navigate("/");
   }
 
@@ -54,10 +77,18 @@ const NewTripPage = () => {
       place_to: toCity,
       distance: distance,
       income: perTripValue,
+      date_started: activeTrip.date_started,
+      date_ended: null,
+      is_active: true,
+      user_id: user.id,
     };
-    await axios.post("http://127.0.0.1:8000/api/trips/", newTrip, {
-      headers: { Authorization: "Bearer " + token },
-    });
+    await axios.put(
+      `http://127.0.0.1:8000/api/trips/${state.tripId}/`,
+      newTrip,
+      {
+        headers: { Authorization: "Bearer " + token },
+      }
+    );
     navigate("/");
   }
 
@@ -117,7 +148,7 @@ const NewTripPage = () => {
             : tripAverageIncome.toFixed(2)}
         </label>
       </div>
-      <button onClick={handleSubmitPerTrip}>Start</button>
+      <button onClick={handleSubmitPerTrip}>Confirm</button>
     </div>
   ) : (
     //// Turnery
@@ -163,9 +194,9 @@ const NewTripPage = () => {
             : tripAverageIncome.toFixed(2)}
         </label>
       </div>
-      <button onClick={handleSubmitPerMile}>Start</button>
+      <button onClick={handleSubmitPerMile}>Confirm</button>
     </div>
   );
 };
 
-export default NewTripPage;
+export default UpdateTripPAge;

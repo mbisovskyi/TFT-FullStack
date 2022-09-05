@@ -8,6 +8,8 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import NewTripPage from "./pages/NewTripPage/NewTripPage";
+import UpdateTripPAge from "./pages/UpdateTripPage/UpdateTripPage";
+import CostsPage from "./pages/CostsPage/CostsPage";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -15,7 +17,6 @@ import Footer from "./components/Footer/Footer";
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
-import CostsPage from "./pages/CostsPage/CostsPage";
 
 function App() {
   return (
@@ -51,6 +52,14 @@ function App() {
           element={
             <PrivateRoute>
               <CostsPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/updateTrip"
+          element={
+            <PrivateRoute>
+              <UpdateTripPAge />
             </PrivateRoute>
           }
         />

@@ -1,6 +1,6 @@
 //utils
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 
@@ -14,7 +14,6 @@ import RecentTrips from "../../components/RecentTrips/RecentTrips";
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const { state } = useLocation();
   const [user, token] = useAuth();
   const [allTrips, setAllTrips] = useState([]);
   const [allUserCosts, setAllUserCosts] = useState([]);
@@ -75,6 +74,7 @@ const HomePage = () => {
       <YearIncome allTrips={allTrips} totalCosts={totalCosts} />
       <ActiveTrip allTrips={allTrips} tripTotalCosts={activeTripTotalCosts} />
       <RecentTrips allTrips={allTrips} />
+      <button>Filter trips</button>
     </div>
   );
 };
