@@ -26,8 +26,16 @@ const RecentTrips = (props) => {
           return (
             <div className="recenttrips-item" key={index}>
               <div className="trip-dates-container">
-                <p>{trip.date_started}</p>
-                <p>{trip.date_ended}</p>
+                <p>
+                  <span>Started: </span>
+                  {"   "}
+                  {trip.date_started}
+                </p>
+                <p>
+                  <span>Ended: </span>
+                  {"   "}
+                  {trip.date_ended}
+                </p>
               </div>
               <p>
                 <span>Route: </span>

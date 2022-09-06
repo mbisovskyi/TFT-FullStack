@@ -2,4 +2,52 @@
   text-align: center;
   width: 80%;
   margin: auto;
+  font-family: "CorbelBold";
+  font-size: 30px;
+}
+
+.income-costs-container {
+  margin: 4% auto 0;
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+}
+
+.income-container {
+  position: relative;
+  border: 3px solid #35a376;
+  border-radius: 10px;
+  padding: 0.5rem 2rem;
+  color: white;
+  width: 40%;
+  padding: 1rem 0 0.5rem;
+}
+
+.costs-container {
+  position: relative;
+  border: 3px solid #35a376;
+  border-radius: 10px;
+  padding: 0.5rem 2rem;
+  color: white;
+  width: 40%;
+  padding: 1rem 0 0.5rem;
+}
+
+.income-tag {
+  width: 65%;
+  background-color: #35a376;
+  position: absolute;
+  border-radius: 10px;
+  top: -1.3rem;
+  translate: -50%;
+}
+
+.costs-tag {
+  width: 65%;
+  background-color: #35a376;
+  position: absolute;
+  border-radius: 10px;
+  top: -1.3rem;
+  translate: -50%;
+  color: #52141b;
 }

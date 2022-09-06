@@ -2,12 +2,13 @@
 import "./IncomeDetailsPage.css";
 
 //Hooks
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import useAuth from "../../hooks/useAuth";
 
 const IncomeDetailsPage = () => {
   const navigate = useNavigate();
+  const { state } = useLocation();
   const [user, token] = useAuth();
 
   return (
@@ -15,14 +16,15 @@ const IncomeDetailsPage = () => {
       <button onClick={() => navigate("/")}>Back</button>
       <div className="income-costs-container">
         <div className="income-container">
-          <label>Year income</label>
-          <p>$1213</p>
+          <label className="income-tag">Year income</label>
+          <p>${state.yearIncome}</p>
         </div>
         <div className="costs-container">
-          <label>Year costs</label>
-          <p>$112</p>
+          <label className="costs-tag">Year costs</label>
+          <p>${state.yearCosts}</p>
         </div>
       </div>
+      <div className="chart-container">Chart</div>
     </div>
   );
 };
