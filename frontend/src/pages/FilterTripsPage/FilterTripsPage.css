@@ -7,18 +7,36 @@
   width: 60%;
 }
 
+.date-fields {
+  display: flex;
+  justify-content: space-between;
+  /* padding-left: 0.7rem; */
+}
+
 .date-fields input {
   display: inline-block;
-  padding: 2rem 1rem;
-  width: 22%;
+  width: 40%;
+  padding: 2rem 0;
   background: none;
   border-style: none;
   color: white;
   text-align: center;
 }
 
+.fromdate-container {
+  width: 50%;
+}
+
+.todate-container {
+  width: 50%;
+}
+
 ::-webkit-calendar-picker-indicator {
   filter: invert(1);
+}
+
+::-webkit-calendar-picker-indicator:hover {
+  cursor: pointer;
 }
 
 .filter-dates-tag {

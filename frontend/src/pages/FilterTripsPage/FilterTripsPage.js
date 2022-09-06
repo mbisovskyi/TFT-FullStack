@@ -18,6 +18,7 @@ const FilterTripsPage = () => {
   const [allTrips, setAllTrips] = useState([]);
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
+  const [filteredTrips, setFilteredTrips] = useState([]);
 
   useEffect(() => {
     const allUserTrips = async () => {
@@ -40,8 +41,8 @@ const FilterTripsPage = () => {
     let dateTo = new Date(toDate);
     let timeOfDateTo = dateTo.getTime();
 
-    let filteredTrips = filterTripByDates(timeOfDateFrom, timeOfDateTo);
-    console.log(filteredTrips);
+    let filteredTripsArray = filterTripByDates(timeOfDateFrom, timeOfDateTo);
+    setFilteredTrips(filteredTripsArray);
   }
 
   function filterTripByDates(timeFrom, timeTo) {
@@ -58,27 +59,34 @@ const FilterTripsPage = () => {
       <div className="filterdates-container">
         <label className="filter-dates-tag">Dates</label>
         <div className="date-fields">
-          <span>
-            From date:
-            <input
-              type="date"
-              value={fromDate}
-              onChange={(event) => setFromDate(event.target.value)}
-            ></input>
-          </span>
-          {"                          "}
-          <span>
-            To date:{" "}
-            <input
-              type="date"
-              value={toDate}
-              onChange={(event) => setToDate(event.target.value)}
-            ></input>
-          </span>
+          <div className="fromdate-container">
+            <span>
+              From:
+              <input
+                type="date"
+                value={fromDate}
+                onChange={(event) => setFromDate(event.target.value)}
+              ></input>
+            </span>
+          </div>
+          <div className="todate-container">
+            <span>
+              To:
+              <input
+                type="date"
+                value={toDate}
+                onChange={(event) => setToDate(event.target.value)}
+              ></input>
+            </span>
+          </div>
         </div>
       </div>
       <button onClick={handleClick}>Filter</button>
-      <RecentTrips allTrips={allTrips} />
+      {filteredTrips.length === 0 ? (
+        <RecentTrips allTrips={allTrips} />
+      ) : (
+        <RecentTrips allTrips={filteredTrips} />
+      )}
     </div>
   );
 };
