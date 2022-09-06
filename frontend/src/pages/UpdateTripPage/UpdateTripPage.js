@@ -6,7 +6,7 @@ import useAuth from "../../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-//utils
+//Utils
 import axios from "axios";
 
 const UpdateTripPAge = () => {

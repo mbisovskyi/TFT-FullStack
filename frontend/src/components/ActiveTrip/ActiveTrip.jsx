@@ -22,11 +22,13 @@ const ActiveTrip = (props) => {
   // Fetch current date
   function getCurrentDate() {
     let date = new Date();
+    console.log(date);
 
     let year = date.getFullYear();
     year = year.toString();
 
     let month = date.getMonth();
+    month += 1;
     if (month < 10) {
       month = "0" + month;
     }
@@ -41,8 +43,8 @@ const ActiveTrip = (props) => {
   }
 
   async function handleEndTripClick() {
-    debugger;
     let dateEnded = getCurrentDate();
+    console.log(dateEnded);
 
     let updateTrip = activeTrips.map((trip) => {
       return {

@@ -10,6 +10,7 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import NewTripPage from "./pages/NewTripPage/NewTripPage";
 import UpdateTripPAge from "./pages/UpdateTripPage/UpdateTripPage";
 import CostsPage from "./pages/CostsPage/CostsPage";
+import FilterTripsPage from "./pages/FilterTripsPage/FilterTripsPage";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -60,6 +61,14 @@ function App() {
           element={
             <PrivateRoute>
               <UpdateTripPAge />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/filterTrips"
+          element={
+            <PrivateRoute>
+              <FilterTripsPage />
             </PrivateRoute>
           }
         />

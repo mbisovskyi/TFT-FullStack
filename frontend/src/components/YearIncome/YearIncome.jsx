@@ -1,9 +1,12 @@
 // Importing styles
 import "./YearIncome.css";
 
-//Importing utils
+//Hooks
+import { useNavigate } from "react-router-dom";
 
 const YearIncome = (props) => {
+  const navigate = useNavigate();
+
   let complitedTripsArray = props.allTrips.filter(
     (trip) => trip.is_active === false
   );
@@ -18,7 +21,10 @@ const YearIncome = (props) => {
   }
 
   return (
-    <div className="yearincome-wrap">
+    <div
+      onClick={() => navigate("/yearIncomeDetails")}
+      className="yearincome-wrap"
+    >
       <div className="yearincome-container">
         <label className="year-income-tag">Year income</label>
         <p>${totalYearIncome.toFixed(2)}</p>

@@ -1,0 +1,32 @@
+.filterdates-container {
+  position: relative;
+  white-space: break-spaces;
+  border: 3px solid #35a376;
+  border-radius: 10px;
+  margin: 4% auto 2%;
+  width: 60%;
+}
+
+.date-fields input {
+  display: inline-block;
+  padding: 2rem 1rem;
+  width: 22%;
+  background: none;
+  border-style: none;
+  color: white;
+  text-align: center;
+}
+
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+.filter-dates-tag {
+  position: absolute;
+  background-color: #35a376;
+  color: white;
+  padding: 0.2rem 1%;
+  border-radius: 10px;
+  translate: -50%;
+  top: -1.5rem;
+}

@@ -40,7 +40,7 @@ const NewTripPage = () => {
       place_from: fromCity,
       place_to: toCity,
       distance: distance,
-      income: payRate * distance,
+      income: (payRate * distance).toFixed(2),
     };
     await axios.post("http://127.0.0.1:8000/api/trips/", newTrip, {
       headers: { Authorization: "Bearer " + token },

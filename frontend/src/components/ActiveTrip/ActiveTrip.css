@@ -11,10 +11,6 @@
   border-radius: 10px;
 }
 
-.activetrip-upper-container:hover {
-  cursor: pointer;
-}
-
 .activetrip-upper-container p {
   font-size: 30px;
   color: white;
