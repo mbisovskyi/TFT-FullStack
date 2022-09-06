@@ -11,6 +11,7 @@ import NewTripPage from "./pages/NewTripPage/NewTripPage";
 import UpdateTripPAge from "./pages/UpdateTripPage/UpdateTripPage";
 import CostsPage from "./pages/CostsPage/CostsPage";
 import FilterTripsPage from "./pages/FilterTripsPage/FilterTripsPage";
+import IncomeDetailsPage from "./pages/IncomeDetailsPage/IncomeDetailsPage";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -69,6 +70,14 @@ function App() {
           element={
             <PrivateRoute>
               <FilterTripsPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/incomeDetails"
+          element={
+            <PrivateRoute>
+              <IncomeDetailsPage />
             </PrivateRoute>
           }
         />

@@ -87,6 +87,9 @@ const FilterTripsPage = () => {
       ) : (
         <RecentTrips allTrips={filteredTrips} />
       )}
+      <a href="#app-logo">
+        <button>Go up</button>
+      </a>
     </div>
   );
 };

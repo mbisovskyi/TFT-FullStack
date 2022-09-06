@@ -12,6 +12,16 @@
   padding-bottom: 5%;
 }
 
+.trip-dates-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.trip-dates-container p {
+  font-size: 24px;
+  color: #35a376;
+}
+
 .recent-trips-tag {
   position: absolute;
   background-color: #35a376;
@@ -27,7 +37,7 @@
   padding: 0.3rem 2%;
   border-radius: 10px;
   bottom: -1.5rem;
-  left: 20%;
+  left: 15%;
 }
 
 .recenttrips-total-tag {
@@ -36,7 +46,7 @@
   padding: 0.3rem 2%;
   border-radius: 10px;
   bottom: -1.5rem;
-  right: 20%;
+  right: 15%;
 }
 
 .recenttrips-item {

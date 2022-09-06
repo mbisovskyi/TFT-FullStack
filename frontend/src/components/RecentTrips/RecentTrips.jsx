@@ -25,6 +25,10 @@ const RecentTrips = (props) => {
         {recentFourTrips.map((trip, index) => {
           return (
             <div className="recenttrips-item" key={index}>
+              <div className="trip-dates-container">
+                <p>{trip.date_started}</p>
+                <p>{trip.date_ended}</p>
+              </div>
               <p>
                 <span>Route: </span>
                 {"   "}
