@@ -7,7 +7,7 @@
 }
 
 .income-costs-container {
-  margin: 4% auto 0;
+  margin: 4% auto 4%;
   display: flex;
   justify-content: space-between;
   width: 50%;
