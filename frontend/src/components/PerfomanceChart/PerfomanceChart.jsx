@@ -12,14 +12,35 @@ const PerfomanceChart = (props) => {
   ];
 
   const options = {
-    title: "Company Performance",
-    curveType: "function",
+    titlePosition: "out",
+    title: "Trucker Performance Graph",
+    legendTextStyle: { color: "white", fontSize: "16" },
+    titleTextStyle: { color: "white", fontSize: "22" },
     hAxis: {
-      title: "Trip Date",
-      titleTextStyle: { color: "#35a376", fontSize: 26 },
+      textStyle: {
+        color: "#35a376",
+        fontSize: "20",
+      },
+      titleTextStyle: { color: "white", fontSize: 22 },
+      gridlines: { color: "none", count: 10 },
+      minorGridlines: { color: "none" },
     },
-    vAxis: { minValue: 0 },
-    chartArea: { width: "80%", height: "85%" },
+    vAxis: {
+      baselineColor: "none",
+      gridlines: { color: "none" },
+      textStyle: { color: "#35a376", fontSize: "20" },
+    },
+    chartArea: {
+      width: "80%",
+      height: "85%",
+    },
+    backgroundColor: {
+      fill: "white",
+      stroke: "green",
+      strokeSize: 5,
+    },
+    colors: ["#35a376", "#FD5466"],
+    backgroundColor: { fill: "transparent" },
   };
   return (
     <div className="chart-container">

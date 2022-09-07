@@ -51,3 +51,30 @@
   translate: -50%;
   color: #52141b;
 }
+
+.dates-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 15%;
+  margin-bottom: 2%;
+}
+
+.dates-container button {
+  margin: auto;
+  height: 40px;
+  padding: 0.1rem 1rem;
+}
+
+.dates-container span {
+  color: #35a376;
+}
+
+.date-picker input {
+  width: 72%;
+  display: inline-block;
+  padding: 2rem 0;
+  background: none;
+  border-style: none;
+  color: white;
+  text-align: center;
+}

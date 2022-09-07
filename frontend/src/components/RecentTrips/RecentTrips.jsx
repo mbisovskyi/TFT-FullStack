@@ -8,21 +8,21 @@ const RecentTrips = (props) => {
   );
 
   //Filter of last four complited trips
-  let recentFourTrips = complitedTrips.filter(
+  let recentTrips = complitedTrips.filter(
     (trip, index) => index >= complitedTrips.length - 4
   );
 
   //Calculates total income of recent trips
   let recentTripsTotalIncome = 0;
-  for (let i = 0; i < recentFourTrips.length; i++) {
-    recentTripsTotalIncome += parseFloat(recentFourTrips[i].income);
+  for (let i = 0; i < recentTrips.length; i++) {
+    recentTripsTotalIncome += parseFloat(recentTrips[i].income);
   }
 
   return (
     <div className="recenttrips-wrap">
       <div className="recenttrips-container">
         <label className="recent-trips-tag">Recent trips</label>
-        {recentFourTrips.map((trip, index) => {
+        {recentTrips.map((trip, index) => {
           return (
             <div className="recenttrips-item" key={index}>
               <div className="trip-dates-container">
@@ -55,10 +55,16 @@ const RecentTrips = (props) => {
           );
         })}
         <label className="recenttrips-average-tag">
-          Average: ${recentTripsTotalIncome.toFixed(2) / recentFourTrips.length}
+          Average: $
+          {recentTripsTotalIncome
+            ? (recentTripsTotalIncome / recentTrips.length).toFixed(2)
+            : (recentTripsTotalIncome = 0)}
         </label>
         <label className="recenttrips-total-tag">
-          Total: ${recentTripsTotalIncome.toFixed(2)}
+          Total: $
+          {recentTripsTotalIncome
+            ? recentTripsTotalIncome.toFixed(2)
+            : (recentTripsTotalIncome = 0)}
         </label>
       </div>
     </div>
