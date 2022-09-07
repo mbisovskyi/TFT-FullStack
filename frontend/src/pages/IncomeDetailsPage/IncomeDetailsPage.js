@@ -7,9 +7,10 @@ import { useState, useEffect } from "react";
 import useAuth from "../../hooks/useAuth";
 
 //Utils
-import React from "react";
-import { Chart } from "react-google-charts";
 import axios from "axios";
+
+//Components
+import PerfomanceChart from "../../components/PerfomanceChart/PerfomanceChart";
 
 const IncomeDetailsPage = () => {
   const navigate = useNavigate();
@@ -36,11 +37,14 @@ const IncomeDetailsPage = () => {
     allUserCosts();
   }, []);
 
+  //Milliseconds in a year
   let oneYearTime = 86400000 * 365;
 
+  //Getting current date
   let currentDate = new Date();
   let currentDateTime = currentDate.getTime();
 
+  //Getting trips for past year
   let lastYearTrips = allTrips.filter((trip) => {
     let tripEndedTime = new Date(trip.date_ended);
     return (
@@ -49,28 +53,20 @@ const IncomeDetailsPage = () => {
     );
   });
 
-  let lastYearCosts = allUserCosts.filter((cost) => {
-    let costAddedTime = new Date(cost.date_added);
-    return (
-      costAddedTime < currentDateTime &&
-      costAddedTime > currentDateTime - oneYearTime
+  //Getting Trips Income and Costs
+  let tripCounter = 0;
+  let chartDataValues = lastYearTrips.map((trip) => {
+    tripCounter += 1;
+    let tripCosts = 0;
+    let tripCostsArray = allUserCosts.filter(
+      (cost) => cost.trip.id === trip.id
     );
+    for (let i = 0; i < tripCostsArray.length; i++) {
+      tripCosts += parseFloat(tripCostsArray[i].amount);
+    }
+
+    return [trip.date_ended, parseFloat(trip.income), parseFloat(tripCosts)];
   });
-  console.log(lastYearTrips, lastYearCosts);
-
-  const data = [
-    ["Trip", "Incomes", "Expenses"],
-    ["1", 1000, 400],
-    ["2", 1170, 460],
-    ["3", 660, 1120],
-    ["4", 1030, 540],
-  ];
-
-  const options = {
-    title: "Trips Performance",
-    curveType: "function",
-    legend: { position: "bottom" },
-  };
 
   return (
     <div className="incomedetailspage-wrap">
@@ -85,15 +81,7 @@ const IncomeDetailsPage = () => {
           <p>${state.yearCosts}</p>
         </div>
       </div>
-      <div className="chart-container">
-        <Chart
-          chartType="LineChart"
-          width="100%"
-          height="500px"
-          data={data}
-          options={options}
-        />
-      </div>
+      <PerfomanceChart chartData={chartDataValues} />
     </div>
   );
 };
