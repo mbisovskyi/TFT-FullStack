@@ -19,6 +19,7 @@ import Footer from "./components/Footer/Footer";
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
+import ComplitedTripCostsPage from "./pages/ComplitedTripCosts/ComplitedTripCostsPage";
 
 function App() {
   return (
@@ -78,6 +79,14 @@ function App() {
           element={
             <PrivateRoute>
               <IncomeDetailsPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/tripCosts"
+          element={
+            <PrivateRoute>
+              <ComplitedTripCostsPage />
             </PrivateRoute>
           }
         />

@@ -11,6 +11,7 @@ const Navbar = () => {
   return (
     <div className="navBar">
       <svg
+        onClick={() => navigate("/")}
         id="app-logo"
         xmlns="http://www.w3.org/2000/svg"
         width="143"

@@ -73,8 +73,14 @@ const HomePage = () => {
       </h3>
       <YearIncome allTrips={allTrips} totalCosts={totalCosts} />
       <ActiveTrip allTrips={allTrips} tripTotalCosts={activeTripTotalCosts} />
-      <RecentTrips allTrips={allTrips} />
-      <button onClick={() => navigate("filterTrips")}>Filter trips</button>
+      {allTrips.length > 0 ? (
+        <div>
+          <RecentTrips allTrips={allTrips} allUserCosts={allUserCosts} />
+          <button onClick={() => navigate("filterTrips")}>Filter trips</button>
+        </div>
+      ) : (
+        <p>No complited trips</p>
+      )}
     </div>
   );
 };

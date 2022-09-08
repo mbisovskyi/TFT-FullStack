@@ -21,18 +21,18 @@ const YearIncome = (props) => {
   }
 
   return (
-    <div
-      onClick={() =>
-        navigate("/incomeDetails", {
-          state: {
-            yearIncome: totalYearIncome.toFixed(2),
-            yearCosts: props.totalCosts.toFixed(2),
-          },
-        })
-      }
-      className="yearincome-wrap"
-    >
-      <div className="yearincome-container">
+    <div className="yearincome-wrap">
+      <div
+        onClick={() =>
+          navigate("/incomeDetails", {
+            state: {
+              yearIncome: totalYearIncome.toFixed(2),
+              yearCosts: props.totalCosts.toFixed(2),
+            },
+          })
+        }
+        className="yearincome-container"
+      >
         <label className="year-income-tag">Year income</label>
         <p>${totalYearIncome.toFixed(2)}</p>
         <label className="year-costs-tag">

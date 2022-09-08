@@ -3,11 +3,8 @@
   padding: 0.1rem;
 }
 
-.yearincome-wrap:hover {
-  cursor: pointer;
-}
-
 .yearincome-container {
+  cursor: pointer;
   width: 40%;
   margin: auto;
   border: 3px solid #35a376;

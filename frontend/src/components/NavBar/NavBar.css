@@ -5,6 +5,10 @@
   align-items: center;
 }
 
+.navBar svg:hover {
+  cursor: pointer;
+}
+
 .navBar-buttons button {
   background: transparent;
   border: none;

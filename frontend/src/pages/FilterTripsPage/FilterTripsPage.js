@@ -19,6 +19,7 @@ const FilterTripsPage = () => {
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
   const [filteredTrips, setFilteredTrips] = useState([]);
+  const [allUserCosts, setAllUserCosts] = useState([]);
 
   useEffect(() => {
     const allUserTrips = async () => {
@@ -27,11 +28,20 @@ const FilterTripsPage = () => {
       });
       setAllTrips(response.data);
     };
+    const allUserCosts = async () => {
+      let response = await axios.get(
+        `http://127.0.0.1:8000/api/costs/user/${user.id}/`,
+        { headers: { Authorization: "Bearer " + token } }
+      );
+      setAllUserCosts(response.data);
+    };
     allUserTrips();
+    allUserCosts();
   }, []);
 
-  async function handleClick() {
+  async function handleClick(event) {
     getTimeOfProvidedDates();
+    event.preventDefault();
   }
 
   function getTimeOfProvidedDates() {
@@ -55,7 +65,13 @@ const FilterTripsPage = () => {
 
   return (
     <div className="container">
-      <button onClick={() => navigate("/")}>Back</button>
+      <button
+        onClick={() => {
+          navigate("/");
+        }}
+      >
+        Back
+      </button>
       <div className="filterdates-container">
         <label className="filter-dates-tag">Dates</label>
         <div className="date-fields">
@@ -83,9 +99,13 @@ const FilterTripsPage = () => {
       </div>
       <button onClick={handleClick}>Filter</button>
       {filteredTrips.length === 0 ? (
-        <RecentTrips allTrips={allTrips} />
+        <RecentTrips allTrips={allTrips} allUserCosts={allUserCosts} />
       ) : (
-        <RecentTrips allTrips={filteredTrips} />
+        <RecentTrips
+          allTrips={allTrips}
+          allUserCosts={allUserCosts}
+          filteredTrips={filteredTrips}
+        />
       )}
       <a href="#app-logo">
         <button>Go up</button>

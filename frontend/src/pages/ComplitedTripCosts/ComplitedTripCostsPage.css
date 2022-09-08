@@ -1,0 +1,41 @@
+.complitedtripcosts-wrap {
+  width: 40%;
+  margin: auto;
+  font-family: "CorbelBold";
+  text-align: center;
+  color: white;
+}
+
+.goup-btn {
+  position: fixed;
+  right: 25%;
+  bottom: 25%;
+  background: none;
+  color: #35a376;
+}
+
+.goup-btn:hover {
+  box-shadow: none;
+  color: white;
+  transform: none;
+  cursor: pointer;
+}
+
+.complitedtripcosts-container {
+  margin-top: 10%;
+  position: relative;
+  border: 3px solid #35a376;
+  border-radius: 10px;
+  padding: 4%;
+}
+
+.costs-content {
+  width: 80%;
+  margin: auto;
+  padding-bottom: 2%;
+  border-bottom: 1px solid #35a376;
+}
+
+.costs-content span {
+  color: #35a376;
+}

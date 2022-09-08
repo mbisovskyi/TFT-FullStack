@@ -42,7 +42,7 @@ const ProfilePage = () => {
 
   return (
     <div className="container">
-      <button onClick={() => navigate("/")}>Home</button>
+      <button onClick={() => navigate("/")}>Back</button>
       <div className="profile-content">
         <h3>
           <span className="green-title">Profile: </span>

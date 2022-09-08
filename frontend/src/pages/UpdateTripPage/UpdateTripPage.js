@@ -18,9 +18,9 @@ const UpdateTripPAge = () => {
   const [allTrips, setAllTrips] = useState([]);
   const [fromCity, setFromCity] = useState("");
   const [toCity, setToCity] = useState("");
-  const [distance, setDistance] = useState();
+  const [distance, setDistance] = useState("");
   const [incomeType, setIncomeType] = useState("");
-  const [perTripValue, setPerTripValue] = useState();
+  const [perTripValue, setPerTripValue] = useState("");
 
   useEffect(() => {
     const getProfile = async () => {
@@ -169,10 +169,14 @@ const UpdateTripPAge = () => {
               onChange={(event) => setToCity(event.target.value)}
             ></input>
             <p>Distance (miles)</p>
-            <input
-              value={distance}
-              onChange={(event) => setDistance(event.target.value)}
-            ></input>
+            {profile.pay_rate !== 0.0 ? (
+              <input disabled value="Update profile pay rate" />
+            ) : (
+              <input
+                value={distance}
+                onChange={(event) => setDistance(event.target.value)}
+              ></input>
+            )}
             <p>Expected trip income</p>
             <select
               onChange={(event) => setIncomeType(event.target.value)}
