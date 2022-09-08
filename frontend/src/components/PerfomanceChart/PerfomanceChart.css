@@ -1,1 +1,3 @@
-
+.chart-container g > text {
+  text-align: center;
+}

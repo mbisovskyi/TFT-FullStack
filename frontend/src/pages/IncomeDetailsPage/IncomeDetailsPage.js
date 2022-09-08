@@ -70,7 +70,7 @@ const IncomeDetailsPage = () => {
       tripCosts += parseFloat(tripCostsArray[i].amount);
     }
 
-    return [tripCounter, parseFloat(trip.income), parseFloat(tripCosts)];
+    return [trip.date_ended, parseFloat(trip.income), parseFloat(tripCosts)];
   });
 
   /* Section - Filter by dates*/
@@ -108,7 +108,7 @@ const IncomeDetailsPage = () => {
     for (let i = 0; i < tripCostsArray.length; i++) {
       tripCosts += parseFloat(tripCostsArray[i].amount);
     }
-    return [tripCounter, parseFloat(trip.income), parseFloat(tripCosts)];
+    return [trip.date_ended, parseFloat(trip.income), parseFloat(tripCosts)];
   });
 
   return (

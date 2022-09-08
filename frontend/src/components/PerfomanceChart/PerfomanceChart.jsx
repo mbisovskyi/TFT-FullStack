@@ -12,16 +12,15 @@ const PerfomanceChart = (props) => {
   ];
 
   const options = {
-    titlePosition: "out",
     title: "Trucker Performance Graph",
     legendTextStyle: { color: "white", fontSize: "16" },
-    titleTextStyle: { color: "white", fontSize: "22" },
+    titleTextStyle: { color: "white", fontSize: "22", titlePosition: "out" },
     hAxis: {
       textStyle: {
         color: "#35a376",
         fontSize: "20",
       },
-      titleTextStyle: { color: "white", fontSize: 22 },
+      titleTextStyle: { color: "white", fontSize: "22" },
       gridlines: { color: "none", count: 10 },
       minorGridlines: { color: "none" },
     },
