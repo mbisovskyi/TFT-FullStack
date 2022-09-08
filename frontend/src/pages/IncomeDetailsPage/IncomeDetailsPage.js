@@ -27,7 +27,7 @@ const IncomeDetailsPage = () => {
       let response = await axios.get("http://127.0.0.1:8000/api/trips/", {
         headers: { Authorization: "Bearer " + token },
       });
-      setAllTrips(response.data);
+      setAllTrips(response.data.filter((trip) => trip.is_active === false));
     };
     const allUserCosts = async () => {
       let response = await axios.get(
@@ -61,6 +61,7 @@ const IncomeDetailsPage = () => {
   //Getting Trips Income and Costs
   let tripCounter = 0;
   let chartDataValues = lastYearTrips.map((trip) => {
+    let tripDistance = `${trip.distance} mi`;
     tripCounter += 1;
     let tripCosts = 0;
     let tripCostsArray = allUserCosts.filter(
@@ -70,7 +71,7 @@ const IncomeDetailsPage = () => {
       tripCosts += parseFloat(tripCostsArray[i].amount);
     }
 
-    return [trip.date_ended, parseFloat(trip.income), parseFloat(tripCosts)];
+    return [tripDistance, parseFloat(trip.income), parseFloat(tripCosts)];
   });
 
   /* Section - Filter by dates*/
@@ -100,6 +101,7 @@ const IncomeDetailsPage = () => {
   }
 
   let newChartData = filteredTrips.map((trip) => {
+    let tripDistance = `${trip.distance} mi`;
     tripCounter += 1;
     let tripCosts = 0;
     let tripCostsArray = allUserCosts.filter(
@@ -108,52 +110,72 @@ const IncomeDetailsPage = () => {
     for (let i = 0; i < tripCostsArray.length; i++) {
       tripCosts += parseFloat(tripCostsArray[i].amount);
     }
-    return [trip.date_ended, parseFloat(trip.income), parseFloat(tripCosts)];
+    return [tripDistance, parseFloat(trip.income), parseFloat(tripCosts)];
   });
 
-  return (
-    <div className="incomedetailspage-wrap">
-      <button onClick={() => navigate("/")}>Back</button>
-      <div className="income-costs-container">
-        <div className="income-container">
-          <label className="income-tag">Year income</label>
-          <p>${state.yearIncome}</p>
+  if (allTrips.length > 0) {
+    return (
+      <div className="incomedetailspage-wrap">
+        <button onClick={() => navigate("/")}>Back</button>
+        <div className="income-costs-container">
+          <div className="income-container">
+            <label className="income-tag">Year income</label>
+            <p>${state.yearIncome}</p>
+          </div>
+          <div className="costs-container">
+            <label className="costs-tag">Year costs</label>
+            <p>${state.yearCosts}</p>
+          </div>
         </div>
-        <div className="costs-container">
-          <label className="costs-tag">Year costs</label>
-          <p>${state.yearCosts}</p>
+        <div className="dates-container">
+          <div className="date-picker">
+            <span>
+              From:
+              <input
+                type="date"
+                value={fromDate}
+                onChange={(event) => setFromDate(event.target.value)}
+              ></input>
+            </span>
+          </div>
+          <button onClick={handleClick}>Filter</button>
+          <div className="date-picker">
+            <span>
+              To:
+              <input
+                type="date"
+                value={toDate}
+                onChange={(event) => setToDate(event.target.value)}
+              ></input>
+            </span>
+          </div>
         </div>
+        {filteredTrips.length === 0 ? (
+          <PerfomanceChart chartData={chartDataValues} />
+        ) : (
+          <PerfomanceChart chartData={newChartData} />
+        )}
       </div>
-      <div className="dates-container">
-        <div className="date-picker">
-          <span>
-            From:
-            <input
-              type="date"
-              value={fromDate}
-              onChange={(event) => setFromDate(event.target.value)}
-            ></input>
-          </span>
+    );
+  } else if (allTrips.length === 0) {
+    return (
+      <div className="incomedetailspage-wrap">
+        <button onClick={() => navigate("/")}>Back</button>
+        <div className="income-costs-container">
+          <div className="income-container">
+            <label className="income-tag">Year income</label>
+            <p>${state.yearIncome}</p>
+          </div>
+          <div className="costs-container">
+            <label className="costs-tag">Year costs</label>
+            <p>${state.yearCosts}</p>
+          </div>
         </div>
-        <button onClick={handleClick}>Filter</button>
-        <div className="date-picker">
-          <span>
-            To:
-            <input
-              type="date"
-              value={toDate}
-              onChange={(event) => setToDate(event.target.value)}
-            ></input>
-          </span>
-        </div>
+        <p className="no-trips-tag">No complited trips</p>
+        <button onClick={() => navigate("/newTrip")}>Start trip</button>
       </div>
-      {filteredTrips.length === 0 ? (
-        <PerfomanceChart chartData={chartDataValues} />
-      ) : (
-        <PerfomanceChart chartData={newChartData} />
-      )}
-    </div>
-  );
+    );
+  }
 };
 
 export default IncomeDetailsPage;
