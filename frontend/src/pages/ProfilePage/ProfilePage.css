@@ -2,10 +2,6 @@
   margin-top: 4%;
 }
 
-.profile-info {
-  margin-top: 1%;
-}
-
 .color-white {
   font-size: 30px;
   color: white;
@@ -13,6 +9,7 @@
 
 .green-title {
   color: #35a376;
+  padding: 1rem;
 }
 
 .first-name {

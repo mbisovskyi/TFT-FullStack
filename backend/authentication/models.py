@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-    is_owner_operator = models.BooleanField(default=False)
+    is_owner_operator = models.BooleanField('trucker status', default=False)
     '''
     This is a custom version of the built in User class
     It contains all of the built in fields and functionality of the standard User

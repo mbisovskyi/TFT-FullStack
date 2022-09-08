@@ -26,7 +26,7 @@ const ProfilePage = () => {
       } catch (error) {
         let addNew = {
           pay_rate: 0.0,
-          address: " ",
+          address: "Not provided",
           user_id: user.id,
         };
         await axios.post("http://127.0.0.1:8000/api/profile/", addNew, {
@@ -34,6 +34,7 @@ const ProfilePage = () => {
             Authorization: "Bearer " + token,
           },
         });
+        window.location.reload(false);
       }
     };
     fetchProfile();
@@ -47,7 +48,16 @@ const ProfilePage = () => {
           <span className="green-title">Profile: </span>
           <span className="first-name">{user.first_name.toUpperCase()}</span>
         </h3>
-        <p className="profile-info color-white">
+        {user.is_owner_operator === true ? (
+          <p className="color-white">
+            <span className="green-title">Status:</span>Owner operator
+          </p>
+        ) : (
+          <p className="color-white">
+            <span className="green-title">Status:</span> Company driver
+          </p>
+        )}
+        <p className="color-white">
           <span className="green-title">Pay rate/mile: </span>
           {profile.pay_rate}
         </p>
