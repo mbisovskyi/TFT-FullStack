@@ -11,15 +11,19 @@ import RecentTrips from "../../components/RecentTrips/RecentTrips";
 
 //Utils
 import axios from "axios";
+import DisplayFilteredTrips from "../../components/DisplayFilteredTrips/DisplayFilteredTrips";
 
 const FilterTripsPage = () => {
   const navigate = useNavigate();
   const [user, token] = useAuth();
   const [allTrips, setAllTrips] = useState([]);
+  const [allUserCosts, setAllUserCosts] = useState([]);
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
   const [filteredTrips, setFilteredTrips] = useState([]);
-  const [allUserCosts, setAllUserCosts] = useState([]);
+  const [filteredTripsTotalIncome, setFilteredTripsTotalIncome] = useState();
+  const [filteredTripsAverageIncome, setFilteredTripsAverageIncome] =
+    useState();
 
   useEffect(() => {
     const allUserTrips = async () => {
@@ -39,9 +43,23 @@ const FilterTripsPage = () => {
     allUserCosts();
   }, []);
 
-  async function handleClick(event) {
-    getTimeOfProvidedDates();
-    event.preventDefault();
+  useEffect(() => {
+    let filteredTripsTotalIncome = 0;
+    for (let i = 0; i < filteredTrips.length; i++) {
+      filteredTripsTotalIncome += parseFloat(filteredTrips[i].income);
+    }
+    setFilteredTripsTotalIncome(filteredTripsTotalIncome);
+    let filteredTripsAverageIncome =
+      filteredTripsTotalIncome / filteredTrips.length;
+    setFilteredTripsAverageIncome(filteredTripsAverageIncome);
+  }, [filteredTrips]);
+
+  function filterTripByDates(timeFrom, timeTo) {
+    let tripsArray = allTrips.filter((trip) => {
+      let tripDateEndedTime = new Date(trip.date_ended);
+      return tripDateEndedTime >= timeFrom && tripDateEndedTime <= timeTo;
+    });
+    return tripsArray;
   }
 
   function getTimeOfProvidedDates() {
@@ -55,12 +73,8 @@ const FilterTripsPage = () => {
     setFilteredTrips(filteredTripsArray);
   }
 
-  function filterTripByDates(timeFrom, timeTo) {
-    let tripsArray = allTrips.filter((trip) => {
-      let tripDateEndedTime = new Date(trip.date_ended);
-      return tripDateEndedTime >= timeFrom && tripDateEndedTime <= timeTo;
-    });
-    return tripsArray;
+  function handleClick() {
+    getTimeOfProvidedDates();
   }
 
   return (
@@ -98,18 +112,23 @@ const FilterTripsPage = () => {
         </div>
       </div>
       <button onClick={handleClick}>Filter</button>
-      {filteredTrips.length === 0 ? (
-        <RecentTrips allTrips={allTrips} allUserCosts={allUserCosts} />
+      {filteredTrips.length !== 0 ? (
+        <div className="filteredtrips-container">
+          <label className="tripsfound-tag">Trips found</label>
+          <DisplayFilteredTrips
+            filteredTrips={filteredTrips}
+            allUserCosts={allUserCosts}
+          />
+          <label className="average-tag">
+            Average: {filteredTripsAverageIncome.toFixed(2)}
+          </label>
+          <label className="total-tag">
+            Total: ${filteredTripsTotalIncome.toFixed(2)}
+          </label>
+        </div>
       ) : (
-        <RecentTrips
-          allTrips={allTrips}
-          allUserCosts={allUserCosts}
-          filteredTrips={filteredTrips}
-        />
+        <p className="no-trips-found">No trips found!</p>
       )}
-      <a href="#app-logo">
-        <button>Go up</button>
-      </a>
     </div>
   );
 };

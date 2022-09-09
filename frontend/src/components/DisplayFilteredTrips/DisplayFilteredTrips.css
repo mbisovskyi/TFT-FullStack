@@ -1,0 +1,18 @@
+.tripincomecosts-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.costs-link {
+  color: white;
+}
+
+.costs-link span {
+  color: #ff828e;
+}
+
+.costs-link:hover {
+  transform: scale(1.02);
+  cursor: pointer;
+}

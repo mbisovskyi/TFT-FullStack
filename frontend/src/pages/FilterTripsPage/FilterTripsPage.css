@@ -48,3 +48,46 @@
   translate: -50%;
   top: -1.5rem;
 }
+
+.no-trips-found {
+  margin-top: 10%;
+}
+
+.filteredtrips-container {
+  position: relative;
+  width: 60%;
+  margin: 5% auto;
+  border: 3px solid#35a376;
+  border-radius: 10px;
+  padding: 4% 4%;
+}
+
+.tripsfound-tag {
+  position: absolute;
+  top: -1.5rem;
+  translate: -50%;
+  background-color: #35a376;
+  color: white;
+  padding: 0.2rem 1rem;
+  border-radius: 10px;
+}
+
+.average-tag {
+  position: absolute;
+  bottom: -1.3rem;
+  left: 15%;
+  color: white;
+  background-color: #35a376;
+  padding: 0.2rem 1rem;
+  border-radius: 10px;
+}
+
+.total-tag {
+  position: absolute;
+  bottom: -1.3rem;
+  right: 15%;
+  color: white;
+  background-color: #35a376;
+  padding: 0.2rem 1rem;
+  border-radius: 10px;
+}
