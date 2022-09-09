@@ -104,103 +104,147 @@ const UpdateTripPAge = () => {
   }
   tripAverageIncome /= tripsIncomes.length;
 
-  return incomeType === "perTrip" ? (
-    <div className="new-trip-page-wrap">
-      <button onClick={() => navigate("/")}>Back</button>
-      <div className="create-trip-container">
-        <label className="new-trip-tag">New trip</label>
-        <form>
-          <div className="input-fields-container">
-            <p>From city</p>
-            <input
-              value={fromCity}
-              onChange={(event) => setFromCity(event.target.value)}
-            ></input>
-            <p>To city</p>
-            <input
-              value={toCity}
-              onChange={(event) => setToCity(event.target.value)}
-            ></input>
-            <p>Distance (miles)</p>
-            <input
-              value={distance}
-              onChange={(event) => setDistance(event.target.value)}
-            ></input>
-            <p>Expected trip income</p>
-            <select
-              onChange={(event) => setIncomeType(event.target.value)}
-              className="income-type-selector"
-              name="options"
-            >
-              <option value="perMile">Per mile</option>
-              <option value="perTrip">Per trip</option>
-            </select>
-            <input
-              value={perTripValue}
-              onChange={(event) => setPerTripValue(event.target.value)}
-            ></input>
-          </div>
-        </form>
-        <label className="total-trip-tag">
-          Average: $
-          {!tripAverageIncome
-            ? (tripAverageIncome = 0)
-            : tripAverageIncome.toFixed(2)}
-        </label>
-      </div>
-      <button onClick={handleSubmitPerTrip}>Confirm</button>
-    </div>
-  ) : (
-    //// Turnery
-    <div className="new-trip-page-wrap">
-      <button onClick={() => navigate("/")}>Back</button>
-      <div className="create-trip-container">
-        <label className="new-trip-tag">New trip</label>
-        <form onSubmit={handleSubmitPerMile}>
-          <div className="input-fields-container">
-            <p>From city</p>
-            <input
-              value={fromCity}
-              onChange={(event) => setFromCity(event.target.value)}
-            ></input>
-            <p>To city</p>
-            <input
-              value={toCity}
-              onChange={(event) => setToCity(event.target.value)}
-            ></input>
-            <p>Distance (miles)</p>
-            {profile.pay_rate !== 0.0 ? (
-              <input disabled value="Update profile pay rate" />
-            ) : (
+  if (user.is_owner_operator === true) {
+    return incomeType === "perTrip" ? (
+      <div className="new-trip-page-wrap">
+        <button onClick={() => navigate("/")}>Back</button>
+        <div className="create-trip-container">
+          <label className="new-trip-tag">New trip</label>
+          <form>
+            <div className="input-fields-container">
+              <p>From city</p>
+              <input
+                value={fromCity}
+                onChange={(event) => setFromCity(event.target.value)}
+              ></input>
+              <p>To city</p>
+              <input
+                value={toCity}
+                onChange={(event) => setToCity(event.target.value)}
+              ></input>
+              <p>Distance (miles)</p>
               <input
                 value={distance}
                 onChange={(event) => setDistance(event.target.value)}
               ></input>
-            )}
-            <p>Expected trip income</p>
-            <select
-              onChange={(event) => setIncomeType(event.target.value)}
-              className="income-type-selector"
-              name="options"
-            >
-              <option value="perMile">Per mile</option>
-              <option value="perTrip">Per trip</option>
-            </select>
-          </div>
-        </form>
-        <label className="per-mile-total-tag">
-          Total: ${!distance ? payRate * 0 : (payRate * distance).toFixed(2)}
-        </label>
-        <label className="per-mile-average-tag">
-          Average: $
-          {!tripAverageIncome
-            ? (tripAverageIncome = 0)
-            : tripAverageIncome.toFixed(2)}
-        </label>
+              <p>Expected trip income</p>
+              <select
+                onChange={(event) => setIncomeType(event.target.value)}
+                className="income-type-selector"
+                name="options"
+              >
+                <option value="perMile">Per mile</option>
+                <option value="perTrip">Per trip</option>
+              </select>
+              <input
+                value={perTripValue}
+                onChange={(event) => setPerTripValue(event.target.value)}
+              ></input>
+            </div>
+          </form>
+          <label className="total-trip-tag">
+            Average: $
+            {!tripAverageIncome
+              ? (tripAverageIncome = 0)
+              : tripAverageIncome.toFixed(2)}
+          </label>
+        </div>
+        <button onClick={handleSubmitPerTrip}>Confirm</button>
       </div>
-      <button onClick={handleSubmitPerMile}>Confirm</button>
-    </div>
-  );
+    ) : (
+      //// Turnery
+      <div className="new-trip-page-wrap">
+        <button onClick={() => navigate("/")}>Back</button>
+        <div className="create-trip-container">
+          <label className="new-trip-tag">New trip</label>
+          <form onSubmit={handleSubmitPerMile}>
+            <div className="input-fields-container">
+              <p>From city</p>
+              <input
+                value={fromCity}
+                onChange={(event) => setFromCity(event.target.value)}
+              ></input>
+              <p>To city</p>
+              <input
+                value={toCity}
+                onChange={(event) => setToCity(event.target.value)}
+              ></input>
+              <p>Distance (miles)</p>
+              {profile.pay_rate == 0.0 ? (
+                <input disabled value="Update profile pay rate" />
+              ) : (
+                <input
+                  value={distance}
+                  onChange={(event) => setDistance(event.target.value)}
+                ></input>
+              )}
+              <p>Expected trip income</p>
+              <select
+                onChange={(event) => setIncomeType(event.target.value)}
+                className="income-type-selector"
+                name="options"
+              >
+                <option value="perMile">Per mile</option>
+                <option value="perTrip">Per trip</option>
+              </select>
+            </div>
+          </form>
+          <label className="per-mile-total-tag">
+            Total: ${!distance ? payRate * 0 : (payRate * distance).toFixed(2)}
+          </label>
+          <label className="per-mile-average-tag">
+            Average: $
+            {!tripAverageIncome
+              ? (tripAverageIncome = 0)
+              : tripAverageIncome.toFixed(2)}
+          </label>
+        </div>
+        <button onClick={handleSubmitPerMile}>Confirm</button>
+      </div>
+    );
+  } else {
+    return (
+      <div className="new-trip-page-wrap">
+        <button onClick={() => navigate("/")}>Back</button>
+        <div className="create-trip-container">
+          <label className="new-trip-tag">New trip</label>
+          <form onSubmit={handleSubmitPerMile}>
+            <div className="input-fields-container">
+              <p>From city</p>
+              <input
+                value={fromCity}
+                onChange={(event) => setFromCity(event.target.value)}
+              ></input>
+              <p>To city</p>
+              <input
+                value={toCity}
+                onChange={(event) => setToCity(event.target.value)}
+              ></input>
+              <p>Distance (miles)</p>
+              {profile.pay_rate == 0.0 ? (
+                <input disabled value="Update profile pay rate" />
+              ) : (
+                <input
+                  value={distance}
+                  onChange={(event) => setDistance(event.target.value)}
+                ></input>
+              )}
+            </div>
+          </form>
+          <label className="per-mile-total-tag">
+            Total: ${!distance ? payRate * 0 : (payRate * distance).toFixed(2)}
+          </label>
+          <label className="per-mile-average-tag">
+            Average: $
+            {!tripAverageIncome
+              ? (tripAverageIncome = 0)
+              : tripAverageIncome.toFixed(2)}
+          </label>
+        </div>
+        <button onClick={handleSubmitPerMile}>Confirm</button>
+      </div>
+    );
+  }
 };
 
 export default UpdateTripPAge;

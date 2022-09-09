@@ -16,7 +16,7 @@ const RecentTrips = (props) => {
 
   //Filter of last four complited trips
   let recentTrips = complitedTrips.filter(
-    (trip, index) => index >= complitedTrips.length - 4
+    (trip, index) => index >= complitedTrips.length - 2
   );
 
   //Calculates total income of recent trips

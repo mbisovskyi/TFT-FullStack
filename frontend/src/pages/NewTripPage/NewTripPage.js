@@ -139,7 +139,7 @@ const NewTripPage = () => {
                 onChange={(event) => setToCity(event.target.value)}
               ></input>
               <p>Distance (miles)</p>
-              {profile.pay_rate !== 0.0 ? (
+              {profile.pay_rate == 0.0 ? (
                 <input disabled value="Update profile pay rate" />
               ) : (
                 <input
