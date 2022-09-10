@@ -30,16 +30,16 @@ const DisplayFilteredTrips = (props) => {
         return (
           <div key={index} className="content-container">
             <p>
-              <span className="green-title">Route: </span>
+              <span className="text-green">Route: </span>
               {trip.place_from} - {trip.place_to}
             </p>
             <p>
-              <span>Distance: </span>
+              <span className="text-green">Distance: </span>
               {trip.distance} miles
             </p>
             <div className="tripincomecosts-container">
               <p>
-                <span>Income: </span>${trip.income}
+                <span className="text-green">Income: </span>${trip.income}
               </p>
               {allTripsIdsOfAllCosts.includes(
                 trip.id
@@ -51,7 +51,8 @@ const DisplayFilteredTrips = (props) => {
                   }
                 >
                   <p>
-                    <span>Costs: </span>${allCostsOfFilteredTrips[index]}
+                    <span className="text-red">Costs: </span>$
+                    {allCostsOfFilteredTrips[index]}
                   </p>
                 </div>
               ) : /* Getting total trip costs from an Array of total costs for filtered trips */

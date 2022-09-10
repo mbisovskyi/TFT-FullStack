@@ -2,17 +2,22 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 3%;
 }
 
-.costs-link {
+.content-container {
   color: white;
 }
 
-.costs-link span {
+.text-green {
+  color: #35a376;
+}
+
+.text-red {
   color: #ff828e;
 }
 
 .costs-link:hover {
-  transform: scale(1.02);
+  transform: scale(1.2);
   cursor: pointer;
 }

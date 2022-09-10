@@ -26,48 +26,13 @@ const ComplitedTripCostsPage = (props) => {
     getTripCosts();
   }, []);
 
-  console.log(tripCosts);
-
   return (
     <div className="complitedtripcosts-wrap">
       <button onClick={(event) => navigate("/filterTrips")}>Back</button>
-      {tripCosts.length >= 2 ? (
+      {tripCosts.length >= 1 ? (
         <div>
-          <a href="#app-logo">
-            <svg
-              className="goup-btn"
-              xmlns="http://www.w3.org/2000/svg"
-              width="14"
-              height="37.088"
-              viewBox="0 0 14 37.088"
-            >
-              <g
-                id="Group_58"
-                data-name="Group 58"
-                transform="translate(-1474 -654)"
-              >
-                <g id="Group_59" data-name="Group 59">
-                  <g id="Group_60" data-name="Group 60">
-                    <path
-                      id="Path_6"
-                      data-name="Path 6"
-                      d="M0,0V26.088"
-                      transform="translate(1481 665)"
-                      fill="none"
-                      stroke="#35a376"
-                      stroke-width="4"
-                    />
-                    <path
-                      id="Polygon_1"
-                      data-name="Polygon 1"
-                      d="M7,0l7,12H0Z"
-                      transform="translate(1474 654)"
-                      fill="#35a376"
-                    />
-                  </g>
-                </g>
-              </g>
-            </svg>
+          <a className="goup-btn" href="#app-logo">
+            Go up
           </a>
         </div>
       ) : null}

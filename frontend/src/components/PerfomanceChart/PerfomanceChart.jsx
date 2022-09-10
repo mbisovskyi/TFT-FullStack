@@ -7,7 +7,7 @@ import { Chart } from "react-google-charts";
 
 const PerfomanceChart = (props) => {
   const data = [
-    ["Trip Distance", "Trip Income", "Trip Expenses"],
+    ["Trip Number", "Trip Income", "Trip Expenses"],
     ...props.chartData,
   ];
 

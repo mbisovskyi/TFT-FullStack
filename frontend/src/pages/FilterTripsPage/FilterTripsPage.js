@@ -125,6 +125,11 @@ const FilterTripsPage = () => {
           <label className="total-tag">
             Total: ${filteredTripsTotalIncome.toFixed(2)}
           </label>
+          {filteredTrips.length > 3 ? (
+            <a href="#app-logo" className="goup-button">
+              Go up
+            </a>
+          ) : null}
         </div>
       ) : (
         <p className="no-trips-found">No trips found!</p>

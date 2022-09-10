@@ -46,77 +46,23 @@ const RecentTrips = (props) => {
                   {trip.date_ended}
                 </p>
               </div>
-              <p>
-                <span>Route: </span>
-                {"   "}
-                {trip.place_from} - {trip.place_to}
-              </p>
-              <div className="distance-costs-btn-container">
+              <div className="recenttrips-content-container">
+                {" "}
+                <p>
+                  <span>Route: </span>
+                  {"   "}
+                  {trip.place_from} - {trip.place_to}
+                </p>
                 <p>
                   <span>Distance: </span>
                   {"   "}
                   {trip.distance} miles
                 </p>
-                {allCostsTripsIds.includes(trip.id) ? (
-                  <div className="costs-button-container">
-                    <svg
-                      onClick={() =>
-                        navigate("/tripCosts", { state: { tripId: trip.id } })
-                      }
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="39"
-                      height="44"
-                      viewBox="0 0 39 44"
-                    >
-                      <g
-                        id="Group_57"
-                        data-name="Group 57"
-                        transform="translate(-1215 -581)"
-                      >
-                        <g
-                          id="Rectangle_14"
-                          data-name="Rectangle 14"
-                          transform="translate(1215 602)"
-                          fill="none"
-                          stroke="#35a376"
-                          stroke-width="1"
-                        >
-                          <rect width="39" height="9" rx="4.5" stroke="none" />
-                          <rect
-                            x="0.5"
-                            y="0.5"
-                            width="38"
-                            height="8"
-                            rx="4"
-                            fill="none"
-                          />
-                        </g>
-                        <text
-                          id="_"
-                          data-name="$"
-                          transform="translate(1234 615)"
-                          fill="#fff"
-                          font-size="36"
-                          font-family="Corbel-Bold, Corbel"
-                          font-weight="700"
-                        >
-                          <tspan x="-9.492" y="0">
-                            $
-                          </tspan>
-                        </text>
-                      </g>
-                    </svg>
-                  </div>
-                ) : (
-                  // Tarnery -----------------------------------------------------------------------------------------------
-                  <div className="empty-costs-container"></div>
-                )}
+                <p>
+                  <span>Trip income: </span>
+                  {"   "}${trip.income}
+                </p>
               </div>
-
-              <p>
-                <span>Trip income: </span>
-                {"   "}${trip.income}
-              </p>
             </div>
           );
         })}

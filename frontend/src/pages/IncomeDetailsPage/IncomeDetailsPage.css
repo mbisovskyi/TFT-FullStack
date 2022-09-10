@@ -50,7 +50,7 @@
   border-radius: 10px;
   top: -1.3rem;
   translate: -50%;
-  color: #52141b;
+  color: #79242f;
 }
 
 .dates-container {
@@ -62,6 +62,7 @@
 
 .dates-container button {
   margin: auto;
+  margin-right: 18.5%;
   height: 40px;
   padding: 0.1rem 1rem;
 }

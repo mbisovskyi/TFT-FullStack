@@ -71,7 +71,11 @@ const IncomeDetailsPage = () => {
       tripCosts += parseFloat(tripCostsArray[i].amount);
     }
 
-    return [tripDistance, parseFloat(trip.income), parseFloat(tripCosts)];
+    return [
+      `Tr. ${parseInt(tripCounter)}\n${trip.distance} mi`,
+      parseFloat(trip.income),
+      parseFloat(tripCosts),
+    ];
   });
 
   /* Section - Filter by dates*/
@@ -100,6 +104,7 @@ const IncomeDetailsPage = () => {
     return tripsArray;
   }
 
+  tripCounter = 0;
   let newChartData = filteredTrips.map((trip) => {
     let tripDistance = `${trip.distance} mi`;
     tripCounter += 1;
@@ -110,7 +115,11 @@ const IncomeDetailsPage = () => {
     for (let i = 0; i < tripCostsArray.length; i++) {
       tripCosts += parseFloat(tripCostsArray[i].amount);
     }
-    return [tripDistance, parseFloat(trip.income), parseFloat(tripCosts)];
+    return [
+      `Tr. ${parseInt(tripCounter)}\n${trip.distance} mi`,
+      parseFloat(trip.income),
+      parseFloat(tripCosts),
+    ];
   });
 
   if (allTrips.length > 0) {

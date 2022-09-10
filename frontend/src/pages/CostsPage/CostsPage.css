@@ -19,6 +19,7 @@
 .trip-costs-tag {
   position: absolute;
   background-color: #35a376;
+  color: #79242f;
   border-radius: 10px;
   font-size: 30px;
   padding: 0.2rem 5%;
