@@ -55,6 +55,13 @@ const CostsPage = () => {
         </label>
       </div>
       <AddTripCost />
+      {costs.length > 5 ? (
+        <div>
+          <a className="goup" href="#app-logo">
+            Go up
+          </a>
+        </div>
+      ) : null}
     </div>
   ) : (
     <div className="costspage-wrap">

@@ -29,7 +29,7 @@ const ComplitedTripCostsPage = (props) => {
   return (
     <div className="complitedtripcosts-wrap">
       <button onClick={(event) => navigate("/filterTrips")}>Back</button>
-      {tripCosts.length >= 1 ? (
+      {tripCosts.length >= 5 ? (
         <div>
           <a className="goup-btn" href="#app-logo">
             Go up
@@ -45,6 +45,7 @@ const ComplitedTripCostsPage = (props) => {
                 <span>{cost.title}</span>
               </p>
               <p>${cost.amount}</p>
+              <p>{cost.date_added}</p>
             </div>
           );
         })}

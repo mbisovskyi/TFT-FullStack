@@ -72,7 +72,9 @@ const IncomeDetailsPage = () => {
     }
 
     return [
-      `Tr. ${parseInt(tripCounter)}\n${trip.distance} mi`,
+      `Trip ${parseInt(tripCounter)}\nDistance: ${
+        trip.distance
+      } mi;\n Date completed: ${trip.date_ended};`,
       parseFloat(trip.income),
       parseFloat(tripCosts),
     ];
@@ -116,7 +118,9 @@ const IncomeDetailsPage = () => {
       tripCosts += parseFloat(tripCostsArray[i].amount);
     }
     return [
-      `Tr. ${parseInt(tripCounter)}\n${trip.distance} mi`,
+      `Trip ${parseInt(tripCounter)}\nDistance: ${
+        trip.distance
+      } mi;\n Date completed: ${trip.date_ended};`,
       parseFloat(trip.income),
       parseFloat(tripCosts),
     ];
