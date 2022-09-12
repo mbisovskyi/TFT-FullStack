@@ -47,7 +47,6 @@ const RecentTrips = (props) => {
                 </p>
               </div>
               <div className="recenttrips-content-container">
-                {" "}
                 <p>
                   <span>Route: </span>
                   {"   "}
