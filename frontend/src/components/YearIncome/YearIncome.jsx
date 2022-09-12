@@ -36,7 +36,7 @@ const YearIncome = (props) => {
         <label className="year-income-tag">Year income</label>
         <p>${totalYearIncome.toFixed(2)}</p>
         <label className="year-costs-tag">
-          Year costs: ${props.totalCosts}
+          Year costs: ${props.totalCosts.toFixed(2)}
         </label>
       </div>
     </div>

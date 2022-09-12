@@ -9,3 +9,4 @@ class CostSerializer(serializers.ModelSerializer):
     
     trip_id = serializers.IntegerField(write_only=True)
     user_id = serializers.IntegerField(write_only=True)
+    # date_added = serializers.DateField(write_only=True)

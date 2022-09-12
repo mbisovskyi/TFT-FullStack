@@ -21,3 +21,7 @@
   transform: scale(1.2);
   cursor: pointer;
 }
+
+.trip-dates-container {
+  margin-bottom: 2%;
+}

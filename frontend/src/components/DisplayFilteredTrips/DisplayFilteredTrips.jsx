@@ -29,6 +29,16 @@ const DisplayFilteredTrips = (props) => {
       {props.filteredTrips.map((trip, index) => {
         return (
           <div key={index} className="content-container">
+            <div className="trip-dates-container">
+              <p>
+                <span>Started: </span>
+                {trip.date_started}
+              </p>
+              <p>
+                <span>Ended: </span>
+                {trip.date_ended}
+              </p>
+            </div>
             <p>
               <span className="text-green">Route: </span>
               {trip.place_from} - {trip.place_to}
@@ -52,7 +62,7 @@ const DisplayFilteredTrips = (props) => {
                 >
                   <p>
                     <span className="text-red">Costs: </span>$
-                    {allCostsOfFilteredTrips[index]}
+                    {allCostsOfFilteredTrips[index].toFixed(2)}
                   </p>
                 </div>
               ) : /* Getting total trip costs from an Array of total costs for filtered trips */
