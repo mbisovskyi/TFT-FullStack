@@ -85,3 +85,23 @@
   color: #35a376;
   margin-bottom: 3%;
 }
+
+.filteredtotals-tag {
+  color: white;
+  margin-top: 2%;
+}
+
+.filtered-data-total-income-costs {
+  display: flex;
+  justify-content: space-around;
+  font-family: "CorbelBold";
+  margin-bottom: 5%;
+}
+
+.filtered-data-total-income-costs p {
+  color: white;
+}
+
+.filtered-data-total-income-costs span {
+  color: #35a376;
+}

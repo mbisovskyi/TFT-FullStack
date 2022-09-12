@@ -61,7 +61,6 @@ const IncomeDetailsPage = () => {
   //Getting Trips Income and Costs
   let tripCounter = 0;
   let chartDataValues = lastYearTrips.map((trip) => {
-    let tripDistance = `${trip.distance} mi`;
     tripCounter += 1;
     let tripCosts = 0;
     let tripCostsArray = allUserCosts.filter(
@@ -107,8 +106,10 @@ const IncomeDetailsPage = () => {
   }
 
   tripCounter = 0;
+  let filteredTotalIncome = 0;
+  let filteredTotalCosts = 0;
   let newChartData = filteredTrips.map((trip) => {
-    let tripDistance = `${trip.distance} mi`;
+    filteredTotalIncome += parseFloat(trip.income);
     tripCounter += 1;
     let tripCosts = 0;
     let tripCostsArray = allUserCosts.filter(
@@ -117,6 +118,7 @@ const IncomeDetailsPage = () => {
     for (let i = 0; i < tripCostsArray.length; i++) {
       tripCosts += parseFloat(tripCostsArray[i].amount);
     }
+    filteredTotalCosts += tripCosts;
     return [
       `Trip ${parseInt(tripCounter)}\nDistance: ${
         trip.distance
@@ -166,7 +168,18 @@ const IncomeDetailsPage = () => {
         {filteredTrips.length === 0 ? (
           <PerfomanceChart chartData={chartDataValues} />
         ) : (
-          <PerfomanceChart chartData={newChartData} />
+          <div>
+            <PerfomanceChart chartData={newChartData} />
+            <p className="filteredtotals-tag">Filtered totals:</p>
+            <div className="filtered-data-total-income-costs">
+              <p>
+                <span>Income: </span>${filteredTotalIncome.toFixed(2)}
+              </p>
+              <p>
+                <span>Expenses: </span>${filteredTotalCosts.toFixed(2)}
+              </p>
+            </div>
+          </div>
         )}
       </div>
     );
