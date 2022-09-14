@@ -4,7 +4,6 @@
 }
 
 .yearincome-container {
-  cursor: pointer;
   width: 40%;
   margin: auto;
   border: 3px solid #35a376;
@@ -42,4 +41,19 @@
   left: 50%;
   translate: -50%;
   color: #79242f;
+}
+
+.yearincome-details-btn {
+  margin-top: 2%;
+  padding: 0;
+  color: #35a376;
+  background: none;
+  font-family: "CorbelBold";
+  font-size: 24px;
+}
+
+.yearincome-details-btn:hover {
+  box-shadow: none;
+  translate: 0 0;
+  border-bottom: 2px solid white;
 }
