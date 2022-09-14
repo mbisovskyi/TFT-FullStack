@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 
 //Components
 import DisplayFilteredTrips from "../../components/DisplayFilteredTrips/DisplayFilteredTrips";
+import RecentTrips from "../../components/RecentTrips/RecentTrips";
 
 //Utils
 import axios from "axios";
@@ -24,8 +25,6 @@ const FilterTripsPage = () => {
   const [filteredTripsTotalIncome, setFilteredTripsTotalIncome] = useState();
   const [filteredTripsAverageIncome, setFilteredTripsAverageIncome] =
     useState();
-
-  console.log(state);
 
   useEffect(() => {
     const allUserTrips = async () => {
@@ -49,22 +48,48 @@ const FilterTripsPage = () => {
   }, []);
 
   useEffect(() => {
-    let filteredTripsTotalIncome = 0;
-    for (let i = 0; i < filteredTrips.length; i++) {
-      filteredTripsTotalIncome += parseFloat(filteredTrips[i].income);
-    }
-    setFilteredTripsTotalIncome(filteredTripsTotalIncome);
-    let filteredTripsAverageIncome =
-      filteredTripsTotalIncome / filteredTrips.length;
-    setFilteredTripsAverageIncome(filteredTripsAverageIncome);
+    getTotalAndAverageIncomes();
   }, [filteredTrips]);
+
+  useEffect(() => {
+    getTotalAndAverageIncomes();
+  }, [filteredTripsTotalIncome, filteredTripsAverageIncome]);
 
   function previouslyFilteredDates() {
     setFromDate(state.fromDate);
     setToDate(state.toDate);
   }
 
-  function filterTripByDates(timeFrom, timeTo) {
+  function getTotalAndAverageIncomes() {
+    getFilteredTripsTotalIncome();
+    getFilteredTripsAverageIncome();
+  }
+
+  function getFilteredTripsAverageIncome() {
+    let filteredTripsAverageIncome =
+      filteredTripsTotalIncome / filteredTrips.length;
+    setFilteredTripsAverageIncome(filteredTripsAverageIncome);
+  }
+
+  function getFilteredTripsTotalIncome() {
+    let filteredTripsTotalIncome = 0;
+    for (let i = 0; i < filteredTrips.length; i++) {
+      filteredTripsTotalIncome += parseFloat(filteredTrips[i].income);
+    }
+    setFilteredTripsTotalIncome(filteredTripsTotalIncome);
+  }
+
+  function getTimeOfDates() {
+    let dateOne = new Date(fromDate);
+    let timeOfDateFrom = dateOne.getTime();
+
+    let dateTwo = new Date(toDate);
+    let timeOfDateTo = dateTwo.getTime();
+
+    return { timeFrom: timeOfDateFrom, timeTo: timeOfDateTo };
+  }
+
+  function filterTripsBetweenTime(timeFrom, timeTo) {
     let tripsArray = allTrips.filter((trip) => {
       let tripDateEndedTime = new Date(trip.date_ended);
       return tripDateEndedTime >= timeFrom && tripDateEndedTime <= timeTo;
@@ -72,19 +97,11 @@ const FilterTripsPage = () => {
     return tripsArray;
   }
 
-  function getTimeOfProvidedDates() {
-    let dateFrom = new Date(fromDate);
-    let timeOfDateFrom = dateFrom.getTime();
-
-    let dateTo = new Date(toDate);
-    let timeOfDateTo = dateTo.getTime();
-
-    let filteredTripsArray = filterTripByDates(timeOfDateFrom, timeOfDateTo);
-    setFilteredTrips(filteredTripsArray);
-  }
-
   function handleClick() {
-    getTimeOfProvidedDates();
+    let times = getTimeOfDates();
+    let tripsArray = filterTripsBetweenTime(times.timeFrom, times.timeTo);
+    setFilteredTrips(tripsArray);
+    getTotalAndAverageIncomes();
   }
 
   if (!state) {
@@ -145,7 +162,9 @@ const FilterTripsPage = () => {
             ) : null}
           </div>
         ) : (
-          <p className="no-trips-found">No trips found!</p>
+          <p className="no-trips-found">
+            Please, enter dates to filter through
+          </p>
         )}
       </div>
     );
