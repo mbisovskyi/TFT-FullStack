@@ -26,9 +26,19 @@ const ComplitedTripCostsPage = (props) => {
     getTripCosts();
   }, []);
 
+  console.log(state);
+
   return (
     <div className="complitedtripcosts-wrap">
-      <button onClick={(event) => navigate("/filterTrips")}>Back</button>
+      <button
+        onClick={() =>
+          navigate("/filterTrips", {
+            state: { fromDate: state.fromDate, toDate: state.toDate },
+          })
+        }
+      >
+        Back
+      </button>
       {tripCosts.length >= 5 ? (
         <div>
           <a className="goup-btn" href="#app-logo">

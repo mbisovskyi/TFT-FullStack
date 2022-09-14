@@ -57,7 +57,13 @@ const DisplayFilteredTrips = (props) => {
                 <div
                   className="costs-link"
                   onClick={() =>
-                    navigate("/tripCosts", { state: { tripId: trip.id } })
+                    navigate("/tripCosts", {
+                      state: {
+                        tripId: trip.id,
+                        fromDate: props.fromDate,
+                        toDate: props.toDate,
+                      },
+                    })
                   }
                 >
                   <p>

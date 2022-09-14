@@ -2,19 +2,19 @@
 import "./FilterTripsPage.css";
 
 //Hooks
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { useEffect, useState } from "react";
 
 //Components
-import RecentTrips from "../../components/RecentTrips/RecentTrips";
+import DisplayFilteredTrips from "../../components/DisplayFilteredTrips/DisplayFilteredTrips";
 
 //Utils
 import axios from "axios";
-import DisplayFilteredTrips from "../../components/DisplayFilteredTrips/DisplayFilteredTrips";
 
 const FilterTripsPage = () => {
   const navigate = useNavigate();
+  const { state } = useLocation();
   const [user, token] = useAuth();
   const [allTrips, setAllTrips] = useState([]);
   const [allUserCosts, setAllUserCosts] = useState([]);
@@ -24,6 +24,8 @@ const FilterTripsPage = () => {
   const [filteredTripsTotalIncome, setFilteredTripsTotalIncome] = useState();
   const [filteredTripsAverageIncome, setFilteredTripsAverageIncome] =
     useState();
+
+  console.log(state);
 
   useEffect(() => {
     const allUserTrips = async () => {
@@ -41,6 +43,9 @@ const FilterTripsPage = () => {
     };
     allUserTrips();
     allUserCosts();
+    if (state) {
+      previouslyFilteredDates();
+    }
   }, []);
 
   useEffect(() => {
@@ -53,6 +58,11 @@ const FilterTripsPage = () => {
       filteredTripsTotalIncome / filteredTrips.length;
     setFilteredTripsAverageIncome(filteredTripsAverageIncome);
   }, [filteredTrips]);
+
+  function previouslyFilteredDates() {
+    setFromDate(state.fromDate);
+    setToDate(state.toDate);
+  }
 
   function filterTripByDates(timeFrom, timeTo) {
     let tripsArray = allTrips.filter((trip) => {
@@ -77,65 +87,131 @@ const FilterTripsPage = () => {
     getTimeOfProvidedDates();
   }
 
-  return (
-    <div className="container">
-      <button
-        onClick={() => {
-          navigate("/");
-        }}
-      >
-        Back
-      </button>
-      <div className="filterdates-container">
-        <label className="filter-dates-tag">Dates</label>
-        <div className="date-fields">
-          <div className="fromdate-container">
-            <span>
-              From:
-              <input
-                type="date"
-                value={fromDate}
-                onChange={(event) => setFromDate(event.target.value)}
-              ></input>
-            </span>
-          </div>
-          <div className="todate-container">
-            <span>
-              To:
-              <input
-                type="date"
-                value={toDate}
-                onChange={(event) => setToDate(event.target.value)}
-              ></input>
-            </span>
+  if (!state) {
+    return (
+      <div className="container">
+        <button
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          Back
+        </button>
+        <div className="filterdates-container">
+          <label className="filter-dates-tag">Dates</label>
+          <div className="date-fields">
+            <div className="fromdate-container">
+              <span>
+                From:
+                <input
+                  type="date"
+                  value={fromDate}
+                  onChange={(event) => setFromDate(event.target.value)}
+                ></input>
+              </span>
+            </div>
+            <div className="todate-container">
+              <span>
+                To:
+                <input
+                  type="date"
+                  value={toDate}
+                  onChange={(event) => setToDate(event.target.value)}
+                ></input>
+              </span>
+            </div>
           </div>
         </div>
+        <button onClick={handleClick}>Filter</button>
+        {filteredTrips.length !== 0 ? (
+          <div className="filteredtrips-container">
+            <label className="tripsfound-tag">Trips found</label>
+            <DisplayFilteredTrips
+              filteredTrips={filteredTrips}
+              allUserCosts={allUserCosts}
+              fromDate={fromDate}
+              toDate={toDate}
+            />
+            <label className="average-tag">
+              Average: {filteredTripsAverageIncome.toFixed(2)}
+            </label>
+            <label className="total-tag">
+              Total: ${filteredTripsTotalIncome.toFixed(2)}
+            </label>
+            {filteredTrips.length > 3 ? (
+              <a href="#app-logo" className="goup-button">
+                Go up
+              </a>
+            ) : null}
+          </div>
+        ) : (
+          <p className="no-trips-found">No trips found!</p>
+        )}
       </div>
-      <button onClick={handleClick}>Filter</button>
-      {filteredTrips.length !== 0 ? (
-        <div className="filteredtrips-container">
-          <label className="tripsfound-tag">Trips found</label>
-          <DisplayFilteredTrips
-            filteredTrips={filteredTrips}
-            allUserCosts={allUserCosts}
-          />
-          <label className="average-tag">
-            Average: {filteredTripsAverageIncome.toFixed(2)}
-          </label>
-          <label className="total-tag">
-            Total: ${filteredTripsTotalIncome.toFixed(2)}
-          </label>
-          {filteredTrips.length > 3 ? (
-            <a href="#app-logo" className="goup-button">
-              Go up
-            </a>
-          ) : null}
+    );
+  } else {
+    return (
+      <div className="container">
+        <button
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          Back
+        </button>
+        <div className="filterdates-container">
+          <label className="filter-dates-tag">Dates</label>
+          <div className="date-fields">
+            <div className="fromdate-container">
+              <span>
+                From:
+                <input
+                  type="date"
+                  value={fromDate}
+                  onChange={(event) => setFromDate(event.target.value)}
+                ></input>
+              </span>
+            </div>
+            <div className="todate-container">
+              <span>
+                To:
+                <input
+                  type="date"
+                  value={toDate}
+                  onChange={(event) => setToDate(event.target.value)}
+                ></input>
+              </span>
+            </div>
+          </div>
         </div>
-      ) : (
-        <p className="no-trips-found">No trips found!</p>
-      )}
-    </div>
-  );
+        <button onClick={handleClick}>Filter again</button>
+        {filteredTrips.length !== 0 ? (
+          <div>
+            <div className="filteredtrips-container">
+              <label className="tripsfound-tag">Trips found</label>
+              <DisplayFilteredTrips
+                filteredTrips={filteredTrips}
+                allUserCosts={allUserCosts}
+                fromDate={fromDate}
+                toDate={toDate}
+              />
+              <label className="average-tag">
+                Average: {filteredTripsAverageIncome.toFixed(2)}
+              </label>
+              <label className="total-tag">
+                Total: ${filteredTripsTotalIncome.toFixed(2)}
+              </label>
+              {filteredTrips.length > 3 ? (
+                <a href="#app-logo" className="goup-button">
+                  Go up
+                </a>
+              ) : null}
+            </div>
+          </div>
+        ) : null}
+      </div>
+    );
+  }
 };
 
 export default FilterTripsPage;
