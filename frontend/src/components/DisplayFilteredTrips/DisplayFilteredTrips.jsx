@@ -62,6 +62,7 @@ const DisplayFilteredTrips = (props) => {
                         tripId: trip.id,
                         fromDate: props.fromDate,
                         toDate: props.toDate,
+                        totalCosts: allCostsOfFilteredTrips[index].toFixed(2),
                       },
                     })
                   }

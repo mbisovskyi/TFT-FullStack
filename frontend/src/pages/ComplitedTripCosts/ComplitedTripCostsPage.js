@@ -16,6 +16,7 @@ const ComplitedTripCostsPage = (props) => {
   const [tripCosts, setTripCosts] = useState([]);
 
   useEffect(() => {
+    debugger;
     const getTripCosts = async () => {
       let response = await axios.get(
         `http://127.0.0.1:8000/api/costs/trip/${state.tripId}/`,
@@ -25,8 +26,6 @@ const ComplitedTripCostsPage = (props) => {
     };
     getTripCosts();
   }, []);
-
-  console.log(state);
 
   return (
     <div className="complitedtripcosts-wrap">
@@ -41,13 +40,23 @@ const ComplitedTripCostsPage = (props) => {
       </button>
       {tripCosts.length >= 5 ? (
         <div>
-          <a className="goup-btn" href="#app-logo">
+          <a
+            className="goup-btn"
+            href="#app-logo"
+            onClick={() =>
+              navigate("#app-logo", {
+                state: { fromDate: state.fromDate, toDate: state.toDate },
+              })
+            }
+          >
             Go up
           </a>
         </div>
       ) : null}
       <div className="complitedtripcosts-container">
-        <label className="trip-costs-tag">Trip costs</label>
+        <label className="trip-costs-tag">
+          <p>Trip costs</p>
+        </label>
         {tripCosts.map((cost, index) => {
           return (
             <div className="costs-content" key={index}>
@@ -59,6 +68,9 @@ const ComplitedTripCostsPage = (props) => {
             </div>
           );
         })}
+        <label className="total-costs-tag">
+          Total costs: ${state.totalCosts}
+        </label>
       </div>
     </div>
   );
