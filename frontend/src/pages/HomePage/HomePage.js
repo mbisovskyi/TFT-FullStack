@@ -79,7 +79,7 @@ const HomePage = () => {
           <button onClick={() => navigate("filterTrips")}>Filter trips</button>
         </div>
       ) : (
-        <p>No complited trips</p>
+        <p>No completed trips</p>
       )}
     </div>
   );

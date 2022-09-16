@@ -197,7 +197,7 @@ const IncomeDetailsPage = () => {
             <p>${state.yearCosts}</p>
           </div>
         </div>
-        <p className="no-trips-tag">No complited trips</p>
+        <p className="no-trips-tag">No completed trips</p>
         <button onClick={() => navigate("/newTrip")}>Start trip</button>
       </div>
     );
