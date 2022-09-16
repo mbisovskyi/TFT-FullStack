@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 
 //Components
 import DisplayFilteredTrips from "../../components/DisplayFilteredTrips/DisplayFilteredTrips";
-import RecentTrips from "../../components/RecentTrips/RecentTrips";
 
 //Utils
 import axios from "axios";
@@ -25,6 +24,7 @@ const FilterTripsPage = () => {
   const [filteredTripsTotalIncome, setFilteredTripsTotalIncome] = useState();
   const [filteredTripsAverageIncome, setFilteredTripsAverageIncome] =
     useState();
+  const [tripsMessage, setTripsMessage] = useState("");
 
   useEffect(() => {
     const allUserTrips = async () => {
@@ -102,6 +102,9 @@ const FilterTripsPage = () => {
     let tripsArray = filterTripsBetweenTime(times.timeFrom, times.timeTo);
     setFilteredTrips(tripsArray);
     getTotalAndAverageIncomes();
+    if (filteredTrips.length === 0) {
+      setTripsMessage("No trips found");
+    }
   }
 
   if (!state) {
@@ -162,9 +165,15 @@ const FilterTripsPage = () => {
             ) : null}
           </div>
         ) : (
-          <p className="no-trips-found">
-            Please, enter dates to filter through
-          </p>
+          <div>
+            {!fromDate && !toDate ? (
+              <p className="no-trips-found">
+                Please, enter dates to filter through
+              </p>
+            ) : (
+              <p className="no-trips-found">{tripsMessage}</p>
+            )}
+          </div>
         )}
       </div>
     );
@@ -227,7 +236,9 @@ const FilterTripsPage = () => {
               ) : null}
             </div>
           </div>
-        ) : null}
+        ) : (
+          <p className="no-trips-found">{tripsMessage}</p>
+        )}
       </div>
     );
   }

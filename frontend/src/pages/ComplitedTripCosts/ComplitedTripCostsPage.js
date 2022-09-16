@@ -43,11 +43,15 @@ const ComplitedTripCostsPage = (props) => {
           <a
             className="goup-btn"
             href="#app-logo"
-            onClick={() =>
+            onClick={() => {
               navigate("#app-logo", {
-                state: { fromDate: state.fromDate, toDate: state.toDate },
-              })
-            }
+                state: {
+                  fromDate: state.fromDate,
+                  toDate: state.toDate,
+                  totalCosts: state.totalCosts,
+                },
+              });
+            }}
           >
             Go up
           </a>
