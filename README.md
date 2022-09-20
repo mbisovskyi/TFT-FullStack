@@ -1,5 +1,7 @@
-An application that allows for a user to track the user's budget based on the trips data    added when a trip was started.
-Technologies used: Python, JavaScript, Django, Django REST Framework, React, HTML/CSS, MySQL Workbench, React Google Charts API, Postman, JSON, JSON Web Token, Adobe XD, Entity Relationship Diagram. 
+An application that allows for a user to track the user's budget based on the trips data added when a trip was started.
+
+• Technologies used: Python, JavaScript, Django, Django REST Framework, React, HTML/CSS, MySQL Workbench, React Google Charts API, Postman, JSON, JSON Web Token, Adobe   XD, Entity Relationship Diagram. 
+
 Application features include:
 User account registration, login, and logout (Authentication and JSON Web Token).
 User profile creation, including trucker status that will be used for creating a new trip feature (Frontend technologies: JavaScript, React, HTML/CSS; Backend technologies: Python, Django, Django REST Framework).
