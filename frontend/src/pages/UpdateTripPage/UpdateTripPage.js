@@ -108,7 +108,7 @@ const UpdateTripPAge = () => {
       <div className="new-trip-page-wrap">
         <button onClick={() => navigate("/")}>Back</button>
         <div className="create-trip-container">
-          <label className="new-trip-tag">New trip</label>
+          <label className="new-trip-tag">Update trip</label>
           <form>
             <div className="input-fields-container">
               <p>From city</p>
@@ -159,7 +159,7 @@ const UpdateTripPAge = () => {
       <div className="new-trip-page-wrap">
         <button onClick={() => navigate("/")}>Back</button>
         <div className="create-trip-container">
-          <label className="new-trip-tag">New trip</label>
+          <label className="new-trip-tag">Update trip</label>
           <form onSubmit={handleSubmitPerMile}>
             <div className="input-fields-container">
               <p>From city</p>
@@ -176,7 +176,10 @@ const UpdateTripPAge = () => {
               ></input>
               <p>Distance (miles)</p>
               {profile.pay_rate == 0.0 ? (
-                <input disabled value="Update profile pay rate" />
+                <input
+                  disabled
+                  value="Please, set profile pay rate more than zero"
+                />
               ) : (
                 <input
                   placeholder={activeTrip.distance}
@@ -228,7 +231,10 @@ const UpdateTripPAge = () => {
               ></input>
               <p>Distance (miles)</p>
               {profile.pay_rate == 0.0 ? (
-                <input disabled value="Update profile pay rate" />
+                <input
+                  disabled
+                  value="Please, set profile pay rate more than zero"
+                />
               ) : (
                 <input
                   value={distance}

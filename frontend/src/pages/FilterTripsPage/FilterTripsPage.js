@@ -145,7 +145,7 @@ const FilterTripsPage = () => {
         <button onClick={handleClick}>Filter</button>
         {filteredTrips.length !== 0 ? (
           <div className="filteredtrips-container">
-            <label className="tripsfound-tag">Trips found</label>
+            <label className="tripsfound-tag">Found trips</label>
             <DisplayFilteredTrips
               filteredTrips={filteredTrips}
               allUserCosts={allUserCosts}
