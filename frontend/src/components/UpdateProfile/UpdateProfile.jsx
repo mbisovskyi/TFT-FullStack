@@ -45,11 +45,13 @@ const UpdateProfile = ({ profile }) => {
             <label>Update profile</label>
             <p className="content-title">Pay rate /mile</p>
             <input
+              placeholder={profile.pay_rate}
               value={payRateInput}
               onChange={(event) => setPayRateInput(event.target.value)}
             ></input>
             <p className="content-title">Address</p>
             <input
+              placeholder={profile.address}
               type="text"
               value={addressInput}
               onChange={(event) => setAddress(event.target.value)}

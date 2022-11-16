@@ -13,7 +13,7 @@ const UpdateTripPAge = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const [user, token] = useAuth();
-  const [activeTrip, setActiveTrip] = useState([]);
+  const [activeTrip, setActiveTrip] = useState({});
   const [profile, setProfile] = useState([]);
   const [allTrips, setAllTrips] = useState([]);
   const [fromCity, setFromCity] = useState("");
@@ -50,12 +50,11 @@ const UpdateTripPAge = () => {
   }, []);
 
   async function handleSubmitPerMile() {
-    debugger;
     let newTrip = {
-      place_from: fromCity,
-      place_to: toCity,
-      distance: distance,
-      income: (payRate * distance).toFixed(2),
+      place_from: fromCity ? fromCity : activeTrip.place_from,
+      place_to: toCity ? toCity : activeTrip.place_to,
+      distance: distance ? distance : activeTrip.distance,
+      income: (profile.pay_rate * distance).toFixed(2),
       date_started: activeTrip.date_started,
       date_ended: null,
       is_active: true,
@@ -73,10 +72,10 @@ const UpdateTripPAge = () => {
 
   async function handleSubmitPerTrip() {
     let newTrip = {
-      place_from: fromCity,
-      place_to: toCity,
-      distance: distance,
-      income: perTripValue,
+      place_from: fromCity ? fromCity : activeTrip.place_from,
+      place_to: toCity ? toCity : activeTrip.place_to,
+      distance: distance ? distance : activeTrip.distance,
+      income: perTripValue ? perTripValue : activeTrip.income,
       date_started: activeTrip.date_started,
       date_ended: null,
       is_active: true,
@@ -114,16 +113,19 @@ const UpdateTripPAge = () => {
             <div className="input-fields-container">
               <p>From city</p>
               <input
+                placeholder={activeTrip.place_from}
                 value={fromCity}
                 onChange={(event) => setFromCity(event.target.value)}
               ></input>
               <p>To city</p>
               <input
+                placeholder={activeTrip.place_to}
                 value={toCity}
                 onChange={(event) => setToCity(event.target.value)}
               ></input>
               <p>Distance (miles)</p>
               <input
+                placeholder={activeTrip.distance}
                 value={distance}
                 onChange={(event) => setDistance(event.target.value)}
               ></input>
@@ -137,6 +139,7 @@ const UpdateTripPAge = () => {
                 <option value="perTrip">Per trip</option>
               </select>
               <input
+                placeholder={activeTrip.income}
                 value={perTripValue}
                 onChange={(event) => setPerTripValue(event.target.value)}
               ></input>
@@ -161,11 +164,13 @@ const UpdateTripPAge = () => {
             <div className="input-fields-container">
               <p>From city</p>
               <input
+                placeholder={activeTrip.place_from}
                 value={fromCity}
                 onChange={(event) => setFromCity(event.target.value)}
               ></input>
               <p>To city</p>
               <input
+                placeholder={activeTrip.place_to}
                 value={toCity}
                 onChange={(event) => setToCity(event.target.value)}
               ></input>
@@ -174,6 +179,7 @@ const UpdateTripPAge = () => {
                 <input disabled value="Update profile pay rate" />
               ) : (
                 <input
+                  placeholder={activeTrip.distance}
                   value={distance}
                   onChange={(event) => setDistance(event.target.value)}
                 ></input>

@@ -176,7 +176,8 @@ const IncomeDetailsPage = () => {
                 <span>Income: </span>${filteredTotalIncome.toFixed(2)}
               </p>
               <p>
-                <span>Expenses: </span>${filteredTotalCosts.toFixed(2)}
+                <span style={{ color: "#962c3a" }}>Expenses: </span>$
+                {filteredTotalCosts.toFixed(2)}
               </p>
             </div>
           </div>

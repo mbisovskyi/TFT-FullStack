@@ -81,7 +81,7 @@ const ActiveTrip = (props) => {
               </p>
               <p>{trip.distance} miles</p>
               <label className="activetrip-total-tag">
-                Income: ${trip.income - activeTripTotalCosts}
+                Income: ${(trip.income - activeTripTotalCosts).toFixed(2)}
               </label>
             </div>
           );

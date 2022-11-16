@@ -25,8 +25,6 @@ const RecentTrips = (props) => {
     recentTripsTotalIncome += parseFloat(recentTrips[i].income);
   }
 
-  console.log(props.filteredTrips);
-
   return !props.filteredTrips ? (
     <div className="recenttrips-wrap">
       <div className="recenttrips-container">
