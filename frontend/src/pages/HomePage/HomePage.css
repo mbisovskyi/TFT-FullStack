@@ -8,6 +8,12 @@
   margin-right: 0.6rem;
 }
 
+.profile-page-link:hover {
+  transition: all 0.2s;
+  border-bottom: 2px solid #35a376;
+  text-shadow: 2px 2px 4px #35a376;
+}
+
 h3 {
   font-size: 28px;
   font-family: "CORBEL";

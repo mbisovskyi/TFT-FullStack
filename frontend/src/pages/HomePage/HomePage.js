@@ -69,7 +69,7 @@ const HomePage = () => {
         >
           {user.first_name.toUpperCase()}
         </span>
-        {`thank you for your service for whole country!`.toUpperCase()}
+        {`thank you for your service to the whole country!`.toUpperCase()}
       </h3>
       <YearIncome allTrips={allTrips} totalCosts={totalCosts} />
       <ActiveTrip allTrips={allTrips} tripTotalCosts={activeTripTotalCosts} />
