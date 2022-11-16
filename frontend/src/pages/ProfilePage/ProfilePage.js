@@ -26,7 +26,7 @@ const ProfilePage = () => {
       } catch (error) {
         let addNew = {
           pay_rate: 0.0,
-          address: "Not provided",
+          address: "",
           user_id: user.id,
         };
         await axios.post("http://127.0.0.1:8000/api/profile/", addNew, {

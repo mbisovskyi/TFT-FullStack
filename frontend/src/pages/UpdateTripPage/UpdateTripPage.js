@@ -60,14 +60,21 @@ const UpdateTripPAge = () => {
       is_active: true,
       user_id: user.id,
     };
-    await axios.put(
-      `http://127.0.0.1:8000/api/trips/${state.tripId}/`,
-      newTrip,
-      {
-        headers: { Authorization: "Bearer " + token },
-      }
-    );
-    navigate("/");
+    try {
+      await axios.put(
+        `http://127.0.0.1:8000/api/trips/${state.tripId}/`,
+        newTrip,
+        {
+          headers: { Authorization: "Bearer " + token },
+        }
+      );
+      navigate("/");
+    } catch (error) {
+      console.log(error.response.data);
+      alert(
+        `Please, make sure that you provide a valid information!\n${error}`
+      );
+    }
   }
 
   async function handleSubmitPerTrip() {
@@ -81,14 +88,21 @@ const UpdateTripPAge = () => {
       is_active: true,
       user_id: user.id,
     };
-    await axios.put(
-      `http://127.0.0.1:8000/api/trips/${state.tripId}/`,
-      newTrip,
-      {
-        headers: { Authorization: "Bearer " + token },
-      }
-    );
-    navigate("/");
+    try {
+      await axios.put(
+        `http://127.0.0.1:8000/api/trips/${state.tripId}/`,
+        newTrip,
+        {
+          headers: { Authorization: "Bearer " + token },
+        }
+      );
+      navigate("/");
+    } catch (error) {
+      console.log(error.response.data);
+      alert(
+        `Please, make sure that you provide a valid information!\n${error}`
+      );
+    }
   }
 
   let payRate = profile.pay_rate;

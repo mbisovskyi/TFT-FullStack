@@ -8,32 +8,24 @@ import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 
 const UpdateProfile = ({ profile }) => {
-  const [user, token] = useAuth();
-  const [payRateInput, setPayRateInput] = useState();
-  const [addressInput, setAddress] = useState();
+  const [user, token] = useAuth({});
+  const [payRateInput, setPayRateInput] = useState("");
+  const [addressInput, setAddress] = useState("");
 
   async function handleSubmit() {
-    if (profile) {
-      if (!payRateInput) {
-        setPayRateInput(profile.pay_rate);
-      }
-      if (!addressInput) {
-        setAddress(profile.address);
-      }
-      let newProfile = {
-        pay_rate: payRateInput,
-        address: addressInput,
-        user_id: user.id,
-      };
-      try {
-        await axios.put("http://127.0.0.1:8000/api/profile/", newProfile, {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        });
-      } catch (error) {
-        console.log(error.response.data);
-      }
+    let newProfile = {
+      pay_rate: payRateInput ? payRateInput : user.pay_rate,
+      address: addressInput ? addressInput : user.address,
+      user_id: user.id,
+    };
+    try {
+      await axios.put("http://127.0.0.1:8000/api/profile/", newProfile, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
+    } catch (error) {
+      console.log(error.response.data);
     }
   }
 

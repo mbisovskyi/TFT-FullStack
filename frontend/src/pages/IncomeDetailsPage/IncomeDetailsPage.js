@@ -138,7 +138,7 @@ const IncomeDetailsPage = () => {
             <p>${state.yearIncome}</p>
           </div>
           <div className="costs-container">
-            <label className="costs-tag">Year costs</label>
+            <label className="costs-tag">Year expenses</label>
             <p>${state.yearCosts}</p>
           </div>
         </div>
